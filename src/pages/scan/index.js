@@ -14,7 +14,7 @@ import {
 
 import Camera from "react-native-camera";
 
-class UserInfo extends Component {
+class Scan extends Component {
 	constructor( props ) {
 		super( props );
 		this.state = {
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default UserInfo
+export default Scan

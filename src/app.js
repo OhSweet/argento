@@ -1,46 +1,48 @@
 import React, { Component } from 'react';
 
-import { Text, View, Navigator, TouchableHighlight, TextView } from 'react-native';
+import { Text, View, Navigator, TouchableHighlight, TextView, StatusBar , NativeModules} from 'react-native';
 
-import Home from './pages/home.js'
-import About from './pages/about.js'
-import CustomNavbar from "./common/navbar.js"
-import UserInfo from "./pages/userInfo.js"
+import { ThemeProvider } from 'react-native-material-ui';
+import routes from "./routes"
+import Container from "./common/container"
+import CustomNavigationLayout from "./common/customnavigationlayout"
+
+const UIManager = NativeModules.UIManager;
 
 class App extends Component {
 
-	constructor(props){
-		super(props)
-		this.state = {
-			routes: [
-				{
-					name: 'Home',
-					component: Home
-				}, {
-					name: 'About',
-					component: About
-				},
-				{
-					name: 'UserInfo',
-					component: UserInfo
-				}
-			]
-		}
+	constructor( props ) {
+		super( props )
+	}
+	componentWillMount() {
+	if (UIManager.setLayoutAnimationEnabledExperimental) {
+		UIManager.setLayoutAnimationEnabledExperimental(true);
+	}
+}
+	renderScene( route, navigator ) {
+		return (
+			<Container>
+
+				<StatusBar backgroundColor="rgba(0, 0, 0, 0.2)" translucent/>
+				<View style={{
+					height: 24
+				}}/>
+				<CustomNavigationLayout navigator={ navigator } route={ route }/>
+
+			</Container>
+		)
 	}
 	render( ) {
-			{/* Pentru nav animations: https://facebook.github.io/react-native/docs/navigator.html , ctrl+f Navigator.sceneConfigs */}
 		return (
-			<Navigator
-				initialRoute={this.state.routes[0] }
-				configureScene={(route, routeStack) => Navigator.SceneConfigs.FloatFromBottom }
-				renderScene={(route, navigator) => React.createElement(route.component, { ...this.props, route, navigator, routes: this.state.routes })
-					}
-				navigationBar={
-					<CustomNavbar routes={ this.state.routes }/>
-				}
-			/>
-	 	)
-	}
+			<ThemeProvider>
+				<Navigator
+					initialRoute={routes.home}
+					configureScene={( route, routeStack ) => Navigator.SceneConfigs.FadeAndroid}
+					renderScene={this.renderScene}/>
 
+			</ThemeProvider>
+		)
+	}
 }
+
 export default App

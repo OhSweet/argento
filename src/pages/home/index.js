@@ -9,7 +9,7 @@ import {
 	StyleSheet
 } from 'react-native';
 
-class About extends Component {
+class Home extends Component {
 	render( ) {
 		return (
 	      <MapView
@@ -43,4 +43,4 @@ const styles = StyleSheet.create({
     bottom: 120,
   },
 });
-export default About
+export default Home
