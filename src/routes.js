@@ -1,6 +1,7 @@
 import Home from './pages/home'
 import Scan from './pages/scan'
 import Help from "./pages/help"
+import Login from "./pages/login"
 
 // components
 
@@ -26,6 +27,14 @@ const routes = {
 		Page: Help,
 		drawerInfo: {
 			name: "Help and support",
+			icon: "bookmark-border"
+		}
+	},
+	login: {
+		title: "Login",
+		Page: Login,
+		drawerInfo: {
+			name: "Login with FB",
 			icon: "bookmark-border"
 		}
 	}
