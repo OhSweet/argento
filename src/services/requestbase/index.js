@@ -23,4 +23,4 @@ class RequestBase {
 
 }
 
-export let RequestBase = new RequestBase()
+export let requestBase = new RequestBase()
