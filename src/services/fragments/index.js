@@ -1,11 +1,11 @@
 import { requestBase } from "../requestBase"
 
 class Fragments {
-	getAll( ) {
-		return requestBase( "GET", "/fragments" )
+	getNearby( ) {
+		return requestBase.makeCall( "GET", "/fragments" ).then((response) => response.data)
 	}
 	create(fragment) {
-		return requestBase("POST", "/fragments", fragment)
+		return requestBase.makeCall("POST", "/fragments", fragment)
 	}
 }
 

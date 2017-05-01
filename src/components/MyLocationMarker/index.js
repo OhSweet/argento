@@ -8,6 +8,7 @@ Icon.getImageSource( 'location-arrow', 20, 'blue' ).then( ( source ) => imageSou
 
 const MyLocationMarker = ({ latitude, longitude }) => {
 	return ( <MapView.Marker
+		key={-1}
 		coordinate={{
 		latitude: latitude,
 		longitude: longitude

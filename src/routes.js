@@ -2,7 +2,7 @@ import Home from './pages/home'
 import Scan from './pages/scan'
 import Help from "./pages/help"
 import Login from "./pages/login"
-
+import Create from "./pages/create"
 // components
 
 const routes = {
@@ -34,6 +34,15 @@ const routes = {
 		title: "Login",
 		Page: Login,
 		hideNavbar: true
+	},
+	create: {
+		title: "Create fragments",
+		Page: Create,
+		hideNavbar: false,
+		drawerInfo: {
+			name: "Create fragments",
+			icon: "bookmark-border"
+		}
 	}
 }
 
