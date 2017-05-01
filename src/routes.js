@@ -33,6 +33,7 @@ const routes = {
 	login: {
 		title: "Login",
 		Page: Login,
+		hideNavbar: true,
 		drawerInfo: {
 			name: "Login with FB",
 			icon: "bookmark-border"

@@ -27,7 +27,7 @@ class App extends Component {
 				<View style={{
 					height: 24
 				}}/>
-				<CustomNavigationLayout navigator={ navigator } route={ route }/>
+				<CustomNavigationLayout navigator={ navigator } route={ route } routes={routes}/>
 
 			</Container>
 		)
@@ -36,7 +36,7 @@ class App extends Component {
 		return (
 			<ThemeProvider>
 				<Navigator
-					initialRoute={routes.home}
+					initialRoute={routes.login}
 					configureScene={( route, routeStack ) => Navigator.SceneConfigs.FadeAndroid}
 					renderScene={this.renderScene}/>
 
