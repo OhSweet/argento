@@ -9,6 +9,7 @@ import {
 	Button,
 	ScrollView
 } from 'react-native';
+import MyLocationMarker from "../../components/MyLocationMarker"
 
 class Home extends Component {
 
@@ -61,13 +62,7 @@ class Home extends Component {
 					latitudeDelta: 0.000922,
 					longitudeDelta: 0.0004421
 				}}>
-					<MapView.Marker
-						coordinate={{
-						latitude: this.state.latitude,
-						longitude: this.state.longitude
-					}}
-						title="title"
-						description="? desc"/>
+					{ MyLocationMarker(this.state) }
 
 				</MapView>
 				<ScrollView style={styles.list}></ScrollView>
