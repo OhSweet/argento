@@ -29,6 +29,7 @@ class Home extends Component {
 				latitude: coords.latitude,
 				longitude: coords.longitude
 			})
+			// location.unsubscribe()
 		})
 	}
 	render( ) {

@@ -21,7 +21,12 @@ class Location {
 	}
 
 	onLocationChange( cb ) {
+		// We bind the interval to a variable so we can unsubscribe
 		this.timeout = setInterval( () => this.getCurrent( ).then(( coords ) => cb( coords )), this.pollingInterval )
+	}
+	unsubscribe() {
+		// We call unsubscribe manually when no longer needed because it might cause memory leak
+		clearInterval(this.timeout)
 	}
 }
 export let location = new Location( )
