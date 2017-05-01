@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MapView from "react-native-maps"
 import styles from "./styles.js"
+import { location } from "../../services/location"
 import {
 	Text,
 	View,
@@ -19,30 +20,17 @@ class Home extends Component {
 			latitude: 25,
 			longitude: 43
 		}
+		this.setUpLocationListener.call(this)
 	}
 
-	watchID :
-		? number = null;
-
-	componentDidMount( ) {
-		navigator.geolocation.getCurrentPosition(( position ) => {
-			this.setState({ latitude: position.coords.latitude, longitude: position.coords.longitude });
-		}, ( error ) => console.warn(JSON.stringify( error )), {
-			enableHighAccuracy: true,
-			timeout: 20000,
-			maximumAge: 1000
-		});
-
-		this.watchID = navigator.geolocation.watchPosition(( position ) => {
-			console.warn( "position is", position )
-			this.setState({ latitude: position.coords.latitude, longitude: position.coords.longitude });
-		});
+	setUpLocationListener() {
+		location.onLocationChange((coords) => {
+			this.setState({
+				latitude: coords.latitude,
+				longitude: coords.longitude
+			})
+		})
 	}
-
-	componentWillUnmount( ) {
-		navigator.geolocation.clearWatch( this.watchID );
-	}
-
 	render( ) {
 		return (
 			<View style={{
