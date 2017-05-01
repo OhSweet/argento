@@ -7,13 +7,11 @@ let imageSource = null
 Icon.getImageSource( 'location-arrow', 20, 'blue' ).then( ( source ) => imageSource = source )
 
 const MyLocationMarker = (fragments) => {
-	console.warn("fragments is", fragments)
 
 	let filtered = fragments.filter((obj) => {
 		return obj.location && obj.location.latitude
 	})
 
-	console.warn("filtered is", JSON.stringify(filtered))
 	if (!filtered.length) return null
 
 	return (<View>

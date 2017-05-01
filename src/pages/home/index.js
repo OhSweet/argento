@@ -64,16 +64,28 @@ class Home extends Component {
 					longitudeDelta: 0.0421
 				}}
 					region={{
-					latitude: this.state.currentPosition.latitude,
-					longitude: this.state.currentPosition.longitude,
-					latitudeDelta: 0.000922,
-					longitudeDelta: 0.0004421
-				}}>
+						latitude: this.state.currentPosition.latitude,
+						longitude: this.state.currentPosition.longitude,
+						latitudeDelta: 0.000922,
+						longitudeDelta: 0.0004421
+				}}
+				>
 					<View>
 						{ MyLocationMarker(this.state.currentPosition) }
 					</View>
 					<View>
 						{ FragmentLocationDrawer(this.state.fragments) }
+					</View>
+					<View>
+					{ /* TODO this circle needs his own shit */ }
+						<MapView.Circle
+							radius={50}
+								center={
+								this.state.currentPosition
+							}
+							fillColor="rgba(120, 255, 255, 0.2)"
+							strokeWidth={ 0.5 }
+							/>
 					</View>
 				</MapView>
 				<ScrollView style={styles.list}></ScrollView>
