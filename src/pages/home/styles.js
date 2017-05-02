@@ -11,7 +11,7 @@ export default styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	map: {
-		flex: 1.2
+		flex: 3
 	},
 	list: {
 		flex: 1
