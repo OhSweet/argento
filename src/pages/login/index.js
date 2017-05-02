@@ -19,19 +19,20 @@ class Login extends Component {
 			profilePic: 'https://yt3.ggpht.com/-_IXzYFNWU8U/AAAAAAAAAAI/AAAAAAAAAAA/6tXWVmD0E64/s900-c-k-no-mo-rj-c0xffffff/photo.jpg',
 			busy: true
 		}
-		this.checkIdentity.call(this)
+		this.checkIdentity.call( this )
 	}
 
-	checkIdentity( ) {
-		identity.getToken( ).then(( token ) => {
-			if ( token ) {
-				this.redirectToHome( );
-			}
-		})
+	checkIdentity() {
+		identity.getToken()
+			.then( ( token ) => {
+				if ( token ) {
+					this.redirectToHome();
+				}
+			} )
 	}
 
 	redirectToHome( data ) {
-		this.props.navigator.push(this.props.routes.home)
+		this.props.navigator.push( this.props.routes.home )
 	}
 
 	onLogin( data ) {
@@ -44,11 +45,11 @@ class Login extends Component {
 	onLoginFound( data ) {
 		console.log( "Login found", data )
 	}
-	onLogout( ) {}
-	onLoginError( ) {}
-	onLoginCancel( ) {}
-	onLoginNotFound( ) {}
-	render( ) {
+	onLogout() {}
+	onLoginError() {}
+	onLoginCancel() {}
+	onLoginNotFound() {}
+	render() {
 		var _this = this;
 		return (
 			<View>
@@ -75,17 +76,6 @@ class Login extends Component {
 					onCancel={this.onLoginCancel.bind( this )}
 					onPermissionsMissing={this.onLoginError.bind( this )}/>
 
-				<Image style={{
-					width: 50,
-					height: 50
-				}} source={{
-					uri: this.state.profilePic
-				}}/>
-				<Text>
-					The button needs to be styled from the instructions for login view from the Andriod setup view github thingie. ( FBlogin takes
-					prop "buttonView")
-
-				</Text>
 			</View>
 		)
 	}
