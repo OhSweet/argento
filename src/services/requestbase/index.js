@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseEndpoint = `http://mar-test.eu-2.evennode.com/api`
+const baseEndpoint = `http://theotherside.eu-2.evennode.com/api`
 import {identity} from "../identity"
 
 class RequestBase {

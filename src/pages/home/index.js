@@ -45,6 +45,7 @@ class Home extends Component {
 			})
 
 		})
+		console.log("ref is", this.mapRef)
 	}
 	componentWillUnmount( ) {
 		location.unsubscribe( )
@@ -56,6 +57,7 @@ class Home extends Component {
 				flex: 1
 			}}>
 				<MapView
+					ref={(ref) => this.mapRef = ref }
 					style={styles.map}
 					initialRegion={{
 					latitude: this.state.currentPosition.latitude,
@@ -69,6 +71,9 @@ class Home extends Component {
 						latitudeDelta: 0.000922,
 						longitudeDelta: 0.0004421
 				}}
+					onRegionChange={() => {
+						this.forceUpdate()
+					}}
 				>
 					<View>
 						{ MyLocationMarker(this.state.currentPosition) }
