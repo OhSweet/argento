@@ -36,15 +36,15 @@ class Login extends Component {
 	}
 
 	onLogin( data ) {
-		console.log( "data is", data );
-
+		// console.log( "data is", data );
 		identity.setToken( data.credentials.token );
 		identity.setUserinfo( data.profile )
 		// this.redirectToHome.call( this ) this.setState({ user: data, loggedIn: true, profilePic: data.profile.picture.data.url });
 	}
 	onLoginFound( data ) {
-		console.log( "Login found", data )
+		// console.log( "Login found", data )
 	}
+
 	onLogout() {}
 	onLoginError() {}
 	onLoginCancel() {}

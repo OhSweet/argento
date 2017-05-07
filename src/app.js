@@ -23,7 +23,7 @@ class App extends Component {
 		return (
 			<Container>
 
-				<StatusBar backgroundColor="rgba(0, 0, 0, 0.2)" translucent/>
+				<StatusBar backgroundColor="#2979FF" translucent/>
 				<View style={{
 					height: 24
 				}}/>

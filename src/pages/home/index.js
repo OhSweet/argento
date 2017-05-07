@@ -42,7 +42,6 @@ class Home extends Component {
 				})
 
 		})
-		console.log("ref is", this.mapRef)
 	}
 	componentWillUnmount() {
 		location.unsubscribe()

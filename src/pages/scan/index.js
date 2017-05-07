@@ -64,9 +64,7 @@ class Scan extends Component {
 			</View>
 		)
 	}
-	takePicture( ) {
-		this.camera.capture( ).then(( data ) => console.log( data )).catch(err => console.error( err ));
-	}
+
 	readQR( e ) {
 		let bounds = JSON.parse(e.bounds).map((bigArr) => bigArr.map(
 			(item, index) => {

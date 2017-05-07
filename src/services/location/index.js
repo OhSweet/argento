@@ -16,7 +16,7 @@ class Location {
 		return new Promise((resolve, reject) => {
 			navigator.geolocation.getCurrentPosition( ( position ) => {
 				resolve(position.coords)
-			}, ( error ) => console.log(JSON.stringify( error )), this.options );
+			}, ( error ) => null, this.options );
 		})
 	}
 
