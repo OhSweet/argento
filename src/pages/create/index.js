@@ -18,13 +18,13 @@ class Create extends Component {
 	constructor( props ) {
 		super( props )
 		this.state = {
-			busy: false
+			busy: false,
+			activeTabIndex: 0
 		}
 		this.render = Renderer.bind( this )
 	}
 
 	onBasicInfoComplete(basicInfo) {
-		console.log("ok?")
 		console.warn("basic info was ok", JSON.stringify(basicInfo))
 	}
 

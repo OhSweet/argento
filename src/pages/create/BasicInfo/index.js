@@ -14,7 +14,8 @@ import {
 	Container,
 	Card,
 	BottomNavigation,
-	Icon
+	Icon,
+	Checkbox
 }
 from "react-native-material-ui"
 
@@ -28,22 +29,48 @@ class BasicInfo extends Component {
 			title: "",
 			description: "",
 			discoveryType: "proximity",
-			icon: "explore"
+			checkedGroupIndex: 0
 		}
 	}
 	render() {
+		let groups = [
+			{
+				"text": "Memories and friends",
+				"icon": "insert-emoticon",
+				"index": 0
+			},
+			{
+				"text": "Thoughts or ideas",
+				"icon": "lightbulb-outline",
+				"index": 1,
+			},
+			{
+				"text": "Places and history",
+				"icon": "account-balance",
+				"index": 2,
+			},
+			{
+				"text": "Events and activities",
+				"icon": "event",
+				"index": 3,
+			},
+			{
+				"text": "Announcements",
+				"icon": "record-voice-over",
+				"index": 4,
+			},
+			{
+				"text": "Others",
+				"icon": "texture",
+				"index": 5,
+			}
+
+			]
 		return(
 			<View>
 
 				<View style={{ padding: 30 }}>
-					<Icon
-						name="face"
-						style={{
-							position: "absolute",
-							top: 15,
-							left: 30
-						}}
-						size={50}/>
+					<Icon name="face" style={styles.iconStyle}/>
 
 					<Text style={styles.heading}>
 						What should a fit title be ?
@@ -56,25 +83,19 @@ class BasicInfo extends Component {
 						onChangeText={( title ) => this.setState({ title })}>
 						{this.state.title}
 					</TextInput>
-
 				</View>
+
 				<Divider />
+
 				<View style = {{ padding: 30 }} >
-					<Icon
-						name="nature"
-						style={{
-								position: "absolute",
-								top: 15,
-								left: 30
-						}}
-						size={50}/>
+					<Icon name="nature" style={styles.iconStyle} />
 					<Text style = {styles.heading}>
-						Short description
+						Describe your fragment
 					</Text>
 
 					<TextInput
 						style={styles.serifThin}
-						maxLength={ 45}
+						maxLength={ 45 }
 						placeholder="Sooo beautiful !"
 						onChangeText={( description ) => this.setState({description})}>
 						{this.state.description}
@@ -84,76 +105,35 @@ class BasicInfo extends Component {
 				<Divider/>
 
 				<View style={{ padding: 30 }}>
-					<Icon
-						name="face"
-						style={{
-								position: "absolute",
-								top: 15,
-								left: 30
-						}}
-						size={50}/>
+					<Icon name={groups[this.state.checkedGroupIndex].icon } style={styles.iconStyle} />
 
-					<Text style={styles.heading}>
-						How can you see it
+					<Text style={styles.heading} >
+						Best fit category would be ...
 					</Text>
-
-					<View style={{ marginBottom: 15 }}></View>
-
-					<View
-						style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: "center"}}>
-
-						<View style={{flex: 0.75}}>
-							<Picker
-								mode="dialog"
-								selectedValue={this.state.discoveryType}
-								onValueChange={( discoveryType ) => {
-										let icon = "explore"
-									if (discoveryType == 'qr') { icon = "settings-overscan" }
-									if (discoveryType == 'beacon' ) { icon = "wifi-tethering"}
-									this.setState({ discoveryType, icon })
-								}}>
-
-								<Picker.Item label = "Proximity" value = "proximity" />
-								<Picker.Item label="Qr code" value="qr" />
-								<Picker.Item label = "Beacon" value = "beacon" />
-
-							</Picker>
-						</View>
-						<View style={{ alignItems: "center", flex: 0.25 }}>
-							<Icon
-								name={ this.state.icon }
-								size={30}
-							/>
-						</View>
-					</View>
-					{/* TODO Move these three into their own separate dumb components */}
-					<View>
-						{
-							this.state.discoveryType === 'proximity' ? (
-								<Text>
-									This means only users that are in the area can discovery your fragment no the map and access it's contents.
-								</Text>)
-								: null
-						}
-						{
-							this.state.discoveryType === 'qr' ? (
-								<Text>
-									This enables you to create a qr code based on an image or gif, that will pop up when scanning the code in the physical location. We will provide you with the QbR-code image
-								</Text>)
-								: null
-						}
-						{
-							this.state.discoveryType === 'beacon' ? (
-								<Text>
-									We will let users know about it with a push notification once they pass arond the area :). This has a longer range than normal location discovery.
-								</Text>)
-								: null
-						}
-					</View>
-					<View style={{ padding: 20 }} />
-
+					<View style={{ marginBottom: 25 }}/>
 					<Divider/>
-					<View style={{ padding: 20 }} />
+					<View style={{ flex: 0.75 , paddingLeft: 25, paddingRight: 25, paddingTop: 25}}>
+						{
+							groups.map((group) => {
+								return (
+									<Checkbox
+										key={ group.index }
+										label={ <Text style={
+											this.state.checkedGroupIndex == group.index ? (styles.activeItem) : (styles.inactiveItem)
+										}> { group.text }</Text> }
+										uncheckedIcon={ group.icon }
+										checkedIcon={ group.icon }
+										checked={ this.state.checkedGroupIndex == group.index}
+										onCheck={ () => this.setState({ checkedGroupIndex: group.index })}
+									/>
+								)
+							})
+						}
+					</View>
+					{/* TODO GROUP NEEDS TO BE HERE */}
+
+				</View>
+				<View style={{ padding: 30 }} >
 					<Button
 						raised
 						primary

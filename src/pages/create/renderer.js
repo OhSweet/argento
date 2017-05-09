@@ -30,49 +30,59 @@ from "react-native-chooser";
 import styles from "./styles.js"
 
 import BasicInfo from "./BasicInfo"
+import Discovery from "./Discovery"
 
-export default function () {
+export default function() {
 	return(
 		<View style={{ flex: 1, flexDirection: "column", justifyContent: "space-between", alignItems: "stretch"}}>
 
-			{/* FIRST SECTION  */}
+			{/* CONDITIONALLY RENDERING TABS */}
 
 			<ScrollView style={{ marginTop: 30 }} >
-				<BasicInfo onBasicInfoComplete={ this.onBasicInfoComplete.bind(this) }/>
+				{
+					this.state.activeTabIndex === 0
+					? (<BasicInfo onBasicInfoComplete={ this.onBasicInfoComplete.bind(this) }/>)
+					:(
+						this.state.activeTabIndex === 1
+						? (<Discovery />)
+						: null
+					)
+				}
+
 			</ScrollView>
+
+			{/* PERMANENT PART OF THE VIEWs */}
 			<View>
-				<BottomNavigation>
-					<View style={{ flex:1, flexDirection: "row", justifyContent: "space-around" }}>
+				<BottomNavigation translucent>
+					<View style={{ flex:1, flexDirection: "row", justifyContent: "space-around" , alignItems: "center"}}>
 						<BottomNavigation.Action
 							key="basic"
-							active={ this.state.activeTab == 'basic' }
-							icon="info"
+							active={ this.state.activeTabIndex == 0 }
+							icon="all-out"
 							label="Basic"
-							onPress={() => this.setState({ activeTab: 'basic' })}
+							onPress={() => this.setState({ activeTabIndex: 0 })}
 						/>
 
 						<BottomNavigation.Action
 							key="detection"
 							disabled={true}
-							active={false}
-							icon="wifi"
-							label="Discovery"
-							onPress={() => this.setState({ activeTab: 'detection' })}
+							active={ this.state.activeTabIndex == 1 }
+							icon="explore"
+							label="Detection"
+							onPress={() => this.setState({ activeTabIndex: 1 })}
 
 						/>
 						<BottomNavigation.Action
 							key="content"
-							active={ false }
-							icon="book"
+							active={ this.state.activeTabIndex == 2 }
+							icon="receipt"
 							label="Content"
-							onPress={() => this.setState({ activeTab: 'content' })}
 						/>
-
 					</View>
 
-				</BottomNavigation>
+			</BottomNavigation>
 			</View>
-			</View>
+		</View>
 
 	)
 }
