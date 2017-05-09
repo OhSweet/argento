@@ -18,11 +18,14 @@ class Create extends Component {
 	constructor( props ) {
 		super( props )
 		this.state = {
-			busy: false,
-			title: null,
-			description: null
+			busy: false
 		}
 		this.render = Renderer.bind( this )
+	}
+
+	onBasicInfoComplete(basicInfo) {
+		console.log("ok?")
+		console.warn("basic info was ok", JSON.stringify(basicInfo))
 	}
 
 	createFragment() {

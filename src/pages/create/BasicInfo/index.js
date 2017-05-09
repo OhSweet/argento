@@ -59,93 +59,113 @@ class BasicInfo extends Component {
 
 				</View>
 				<Divider />
-					<View style = {{ padding: 30 }} >
-						<Icon
-							name="nature"
-							style={{
+				<View style = {{ padding: 30 }} >
+					<Icon
+						name="nature"
+						style={{
 								position: "absolute",
 								top: 15,
 								left: 30
-							}}
-							size={50}/>
-						<Text style = {styles.heading}>
-							Short description
-						</Text>
+						}}
+						size={50}/>
+					<Text style = {styles.heading}>
+						Short description
+					</Text>
 
-						<TextInput
-							style={styles.serifThin}
-							maxLength={ 45}
-							placeholder="Sooo beautiful !"
-							onChangeText={( description ) => this.setState({description})}>
-							{this.state.description}
-						</TextInput>
+					<TextInput
+						style={styles.serifThin}
+						maxLength={ 45}
+						placeholder="Sooo beautiful !"
+						onChangeText={( description ) => this.setState({description})}>
+						{this.state.description}
+					</TextInput>
 
-					</View>
-					<Divider/>
+				</View>
+				<Divider/>
 
-					<View style={{ padding: 30 }}>
-						<Icon
-							name="face"
-							style={{
+				<View style={{ padding: 30 }}>
+					<Icon
+						name="face"
+						style={{
 								position: "absolute",
 								top: 15,
 								left: 30
-							}}
-							size={50}/>
+						}}
+						size={50}/>
 
-						<Text style={styles.heading}>
-							How should people view it?
-						</Text>
-						<View style={{ marginBottom: 15 }}></View>
-						<View style={{ diplay: 'flex', flexDirection: 'row', justifyContent: "space-around", alignItems: "center"}}>
-							<View style={{flex: 0.75}}>
-								<Picker
-									mode="dialog"
-									selectedValue={this.state.discoveryType}
-									onValueChange={( discoveryType ) => {
+					<Text style={styles.heading}>
+						How can you see it
+					</Text>
+
+					<View style={{ marginBottom: 15 }}></View>
+
+					<View
+						style={{ flexDirection: 'row', justifyContent: "space-around", alignItems: "center"}}>
+
+						<View style={{flex: 0.75}}>
+							<Picker
+								mode="dialog"
+								selectedValue={this.state.discoveryType}
+								onValueChange={( discoveryType ) => {
 										let icon = "explore"
-										if (discoveryType == 'qr') { icon = "settings-overscan" }
-										if (discoveryType == 'beacon' ) { icon = "wifi-tethering"}
-										this.setState({ discoveryType, icon })
-									}}>
+									if (discoveryType == 'qr') { icon = "settings-overscan" }
+									if (discoveryType == 'beacon' ) { icon = "wifi-tethering"}
+									this.setState({ discoveryType, icon })
+								}}>
 
-									<Picker.Item label = "Proximity" value = "proximity" />
-									<Picker.Item label="Qr code" value="qr" />
-									<Picker.Item label = "Beacon" value = "beacon" />
+								<Picker.Item label = "Proximity" value = "proximity" />
+								<Picker.Item label="Qr code" value="qr" />
+								<Picker.Item label = "Beacon" value = "beacon" />
 
-								</Picker>
-							</View>
-							<View style={{ alignItems: "center", flex: 0.25 }}>
-								<Icon
-									name={ this.state.icon }
-									size={30}
-								/>
-							</View>
+							</Picker>
 						</View>
-						<View>
-							{
-								this.state.discoveryType === 'proximity' ? (
-								<Text>
-									This means only people that are in the area can discovery your fragment no the map and access it's contents.
-								</Text>)
-								: null
-							}
-							{
-								this.state.discoveryType === 'qr' ? (
-								<Text>
-									This enables you to create a qr code based on an image or gif, that will pop up when scanning the code in the physical location. We will provide you with the QR-code image
-								</Text>)
-								: null
-							}
-							{
-								this.state.discoveryType === 'beacon' ? (
-								<Text>
-									We will let people know about it with a push notification once they pass arond the area :). This has a longer range than normal location discovery.
-								</Text>)
-								: null
-							}
+						<View style={{ alignItems: "center", flex: 0.25 }}>
+							<Icon
+								name={ this.state.icon }
+								size={30}
+							/>
 						</View>
+					</View>
+					{/* TODO Move these three into their own separate dumb components */}
+					<View>
+						{
+							this.state.discoveryType === 'proximity' ? (
+								<Text>
+									This means only users that are in the area can discovery your fragment no the map and access it's contents.
+								</Text>)
+								: null
+						}
+						{
+							this.state.discoveryType === 'qr' ? (
+								<Text>
+									This enables you to create a qr code based on an image or gif, that will pop up when scanning the code in the physical location. We will provide you with the QbR-code image
+								</Text>)
+								: null
+						}
+						{
+							this.state.discoveryType === 'beacon' ? (
+								<Text>
+									We will let users know about it with a push notification once they pass arond the area :). This has a longer range than normal location discovery.
+								</Text>)
+								: null
+						}
+					</View>
+					<View style={{ padding: 20 }} />
 
+					<Divider/>
+					<View style={{ padding: 20 }} />
+					<Button
+						raised
+						primary
+						text="Next"
+						upperCase={false}
+						onPress={ () => {
+							let { title, description, discoveryType } = this.state
+							this.props.onBasicInfoComplete({ title, description, discoveryType})
+						}}
+						disabled={ !this.state.description || !this.state.title || !this.state.discoveryType }>
+
+					</Button>
 				</View>
 			</View>
 		)

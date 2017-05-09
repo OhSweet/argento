@@ -15,7 +15,6 @@ import {
 from 'react-native'
 
 import {
-	Button,
 	Divider,
 	Container,
 	Card,
@@ -39,15 +38,12 @@ export default function () {
 			{/* FIRST SECTION  */}
 
 			<ScrollView style={{ marginTop: 30 }} >
-				<BasicInfo />
+				<BasicInfo onBasicInfoComplete={ this.onBasicInfoComplete.bind(this) }/>
 			</ScrollView>
 			<View>
-				<BottomNavigation
-					ref={(ref) => console.log("bottom nav reg", ref)}
-				>
+				<BottomNavigation>
 					<View style={{ flex:1, flexDirection: "row", justifyContent: "space-around" }}>
 						<BottomNavigation.Action
-							ref={(ref) => console.log("bottom nav action ref", ref)}
 							key="basic"
 							active={ this.state.activeTab == 'basic' }
 							icon="info"

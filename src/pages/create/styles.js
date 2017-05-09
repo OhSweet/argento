@@ -7,6 +7,7 @@ export default styles = StyleSheet.create( {
 	heading: {
 		fontSize: 20,
 		color: "black",
+		flexWrap: 'wrap',
 		fontFamily: "sans-serif-light",
 		left: 55
 	},
