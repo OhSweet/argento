@@ -51,9 +51,9 @@ export default function() {
 
 			</ScrollView>
 
-			{/* PERMANENT PART OF THE VIEWs */}
+			{/* PERMANENT PART OF THE VIEWS */}
 			<View>
-				<BottomNavigation translucent>
+				<BottomNavigation>
 					<View style={{ flex:1, flexDirection: "row", justifyContent: "space-around" , alignItems: "center"}}>
 						<BottomNavigation.Action
 							key="basic"

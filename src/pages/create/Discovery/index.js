@@ -27,7 +27,6 @@ class Discovery extends Component {
 		this.state = {
 			busy: false,
 			discoveryType: "proximity",
-			icon: "explore",
 			password: null
 		}
 	}
@@ -35,10 +34,10 @@ class Discovery extends Component {
 		return(
 			<View>
 				<View style={{ padding: 30 }}>
-					<Icon name={ this.state.icon } style={styles.iconStyle} />
+					<Icon name="visibility" style={styles.iconStyle} />
 
 					<Text style={styles.heading}>
-						How can you see it
+						Discovery settings
 					</Text>
 
 					<View style={{ marginBottom: 15 }}></View>
@@ -66,10 +65,24 @@ class Discovery extends Component {
 					</View>
 					{/* TODO Move these three into their own separate dumb components */}
 					{ InfoTexts(this.state.discoveryType )}
-					<View style={{ padding: 20 }} />
+				</View>
 
-					<Divider/>
-					<View style={{ padding: 20 }} />
+				<Divider/>
+				<View style={{ padding: 30 }}>
+					<Icon name="lock-outline" style={styles.iconStyle} />
+
+					<Text style={styles.heading}>
+						Password protection
+					</Text>
+
+					<View style={{ marginBottom: 15 }}></View>
+
+					<TextInput secureTextEntry style={{textAlign: 'center'}}/>
+					{/* TODO Move these three into their own separate dumb components */}
+
+				</View>
+				<Divider/>
+				<View style={{ padding: 30 }}>
 					<Button
 						raised
 						primary
@@ -83,6 +96,7 @@ class Discovery extends Component {
 
 					</Button>
 				</View>
+
 			</View>
 		)
 	}
