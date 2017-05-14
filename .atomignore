@@ -5,3 +5,6 @@
 .watchmanconfig
 testmanifest.manifest
 yarn.lock
+package.json
+st.bat
+app.json
