@@ -44,7 +44,7 @@ export default function() {
 					? (<BasicInfo onBasicInfoComplete={ this.onBasicInfoComplete.bind(this) }/>)
 					:(
 						this.state.activeTabIndex === 1
-						? (<Discovery />)
+						? (<Discovery onDiscoveryInfoComplete={ this.onDiscoveryInfoComplete.bind(this) }/>)
 						: null
 					)
 				}

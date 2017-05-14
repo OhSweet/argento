@@ -24,6 +24,8 @@ import styles from "../styles.js"
 class BasicInfo extends Component {
 	constructor(props) {
 		super(props)
+		this.groups = require('./groups.json')
+
 		this.state = {
 			busy: false,
 			title: "",
@@ -32,43 +34,28 @@ class BasicInfo extends Component {
 			checkedGroupIndex: 0
 		}
 	}
-	render() {
-		let groups = [
-			{
-				"text": "Memories and friends",
-				"icon": "insert-emoticon",
-				"index": 0
-			},
-			{
-				"text": "Thoughts or ideas",
-				"icon": "lightbulb-outline",
-				"index": 1,
-			},
-			{
-				"text": "Places and history",
-				"icon": "account-balance",
-				"index": 2,
-			},
-			{
-				"text": "Events and activities",
-				"icon": "event",
-				"index": 3,
-			},
-			{
-				"text": "Announcements",
-				"icon": "record-voice-over",
-				"index": 4,
-			},
-			{
-				"text": "Others",
-				"icon": "texture",
-				"index": 5,
-			}
 
-			]
+	completeData() {
+		let icon = this.groups[checkedGroupIndex].icon
+		let {
+			title,
+			description,
+			discoveryType
+		} = this.state
+
+		this.props.onBasicInfoComplete({
+			title,
+			description,
+			discoveryType,
+			icon
+		})
+	}
+	isValidData() {
+		return(this.state.description && this.state.title && this.state.discoveryType)
+	}
+	render() {
 		return(
 			<View>
-
 				<View style={{ padding: 30 }}>
 					<Icon name="face" style={styles.iconStyle}/>
 
@@ -139,11 +126,8 @@ class BasicInfo extends Component {
 						primary
 						text="Next"
 						upperCase={false}
-						onPress={ () => {
-							let { title, description, discoveryType } = this.state
-							this.props.onBasicInfoComplete({ title, description, discoveryType})
-						}}
-						disabled={ !this.state.description || !this.state.title || !this.state.discoveryType }>
+						onPress={ this.completeData.bind(this) }
+						enabled={ this.isValidData() }>
 
 					</Button>
 				</View>

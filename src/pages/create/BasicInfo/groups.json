@@ -1,0 +1,39 @@
+[
+    {
+        "text": "Memories and friends",
+        "icon": "insert-emoticon",
+        "index": 0,
+		"syncId": 0
+    },
+    {
+        "text": "Thoughts or ideas",
+        "icon": "lightbulb-outline",
+        "index": 1,
+		"syncId": 1
+    },
+    {
+        "text": "Places and history",
+        "icon": "account-balance",
+        "index": 2,
+		"syncId": 2
+
+    },
+    {
+        "text": "Events and activities",
+        "icon": "event",
+        "index": 3,
+		"syncId": 3
+    },
+    {
+        "text": "Announcements",
+        "icon": "record-voice-over",
+        "index": 4,
+		"syncId": 4
+    },
+    {
+        "text": "Others",
+        "icon": "texture",
+        "index": 5,
+		"syncId": 5
+    }
+]

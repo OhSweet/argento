@@ -27,6 +27,12 @@ class Create extends Component {
 	onBasicInfoComplete(basicInfo) {
 		console.warn("basic info was ok", JSON.stringify(basicInfo))
 	}
+	onDiscoveryInfoComplete(discoveryInfo){
+		console.warn("discovery", JSON.stringify(discoveryInfo))
+	}
+	onContentInfoComplete(contentInfo){
+		console.warn("content", JSON.stringify(contentInfo))
+	}
 
 	createFragment() {
 		this.setState( {

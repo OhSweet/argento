@@ -27,8 +27,18 @@ class Discovery extends Component {
 		this.state = {
 			busy: false,
 			discoveryType: "proximity",
-			password: null
+			password: null,
+			noPassword: true
 		}
+	}
+
+	completeData() {
+		let { discoveryType, password } = this.state
+		this.props.onDiscoveryInfoComplete({ discoveryType, password})
+	}
+
+	isValidData(){
+		return ( this.discoveryType && (this.noPassword || this.password )
 	}
 	render() {
 		return(
@@ -88,11 +98,8 @@ class Discovery extends Component {
 						primary
 						text="Next"
 						upperCase={false}
-						onPress={ () => {
-							let { title, description, discoveryType } = this.state
-							this.props.onBasicInfoComplete({ title, description, discoveryType})
-						}}
-						disabled={ !this.state.description || !this.state.title || !this.state.discoveryType }>
+						onPress={ this.completeData.bind(this) }
+						enabled={ this.isValidData() }>
 
 					</Button>
 				</View>

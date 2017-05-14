@@ -8,3 +8,7 @@ yarn.lock
 package.json
 st.bat
 app.json
+android
+ios
+.gitignore
+index.ios.js
