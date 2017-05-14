@@ -31,6 +31,7 @@ import styles from "./styles.js"
 
 import BasicInfo from "./BasicInfo"
 import Discovery from "./Discovery"
+import Content from "./Content"
 
 export default function() {
 	return(
@@ -45,7 +46,10 @@ export default function() {
 					:(
 						this.state.activeTabIndex === 1
 						? (<Discovery onDiscoveryInfoComplete={ this.onDiscoveryInfoComplete.bind(this) }/>)
-						: null
+						: (<Content
+							onContentInfoComplete={ this.onContentInfoComplete.bind(this) }
+							discoveryType={ this.state.discoveryInfo.discoveryType }
+						/> )
 					)
 				}
 
@@ -77,6 +81,7 @@ export default function() {
 							active={ this.state.activeTabIndex == 2 }
 							icon="receipt"
 							label="Content"
+							onPress={() => this.setState({ activeTabIndex: 2 })}
 						/>
 					</View>
 

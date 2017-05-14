@@ -27,18 +27,23 @@ class Discovery extends Component {
 		this.state = {
 			busy: false,
 			discoveryType: "proximity",
-			password: null,
-			noPassword: true
+			password: null
 		}
 	}
 
 	completeData() {
-		let { discoveryType, password } = this.state
-		this.props.onDiscoveryInfoComplete({ discoveryType, password})
+		let {
+			discoveryType,
+			password
+		} = this.state
+		this.props.onDiscoveryInfoComplete({
+			discoveryType,
+			password
+		})
 	}
 
-	isValidData(){
-		return ( this.discoveryType && (this.noPassword || this.password )
+	isValidData() {
+		return(this.discoveryType)
 	}
 	render() {
 		return(
@@ -87,7 +92,11 @@ class Discovery extends Component {
 
 					<View style={{ marginBottom: 15 }}></View>
 
-					<TextInput secureTextEntry style={{textAlign: 'center'}}/>
+					<TextInput
+						secureTextEntry
+						style={{textAlign: 'center'}}
+						onChangeText={(password) => this.setState({password})}
+					/>
 					{/* TODO Move these three into their own separate dumb components */}
 
 				</View>

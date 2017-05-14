@@ -30,28 +30,25 @@ class BasicInfo extends Component {
 			busy: false,
 			title: "",
 			description: "",
-			discoveryType: "proximity",
 			checkedGroupIndex: 0
 		}
 	}
 
 	completeData() {
-		let icon = this.groups[checkedGroupIndex].icon
+		let group = this.groups[this.state.checkedGroupIndex]
 		let {
 			title,
 			description,
-			discoveryType
 		} = this.state
 
 		this.props.onBasicInfoComplete({
 			title,
 			description,
-			discoveryType,
-			icon
+			group
 		})
 	}
 	isValidData() {
-		return(this.state.description && this.state.title && this.state.discoveryType)
+		return(this.state.description && this.state.title && this.checkedGroupIndex )
 	}
 	render() {
 		return(
@@ -92,7 +89,7 @@ class BasicInfo extends Component {
 				<Divider/>
 
 				<View style={{ padding: 30 }}>
-					<Icon name={groups[this.state.checkedGroupIndex].icon } style={styles.iconStyle} />
+					<Icon name={this.groups[this.state.checkedGroupIndex].icon } style={styles.iconStyle} />
 
 					<Text style={styles.heading} >
 						Best fit category would be ...
@@ -101,7 +98,7 @@ class BasicInfo extends Component {
 					<Divider/>
 					<View style={{ flex: 0.75 , paddingLeft: 25, paddingRight: 25, paddingTop: 25}}>
 						{
-							groups.map((group) => {
+							this.groups.map((group) => {
 								return (
 									<Checkbox
 										key={ group.index }
@@ -127,7 +124,7 @@ class BasicInfo extends Component {
 						text="Next"
 						upperCase={false}
 						onPress={ this.completeData.bind(this) }
-						enabled={ this.isValidData() }>
+						disabled={ !this.isValidData() }>
 
 					</Button>
 				</View>

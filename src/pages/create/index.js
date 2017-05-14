@@ -28,7 +28,8 @@ class Create extends Component {
 		console.warn("basic info was ok", JSON.stringify(basicInfo))
 	}
 	onDiscoveryInfoComplete(discoveryInfo){
-		console.warn("discovery", JSON.stringify(discoveryInfo))
+		this.setState({ discoveryInfo })
+		console.warn("current state in main is", JSON.stringify(this.state))
 	}
 	onContentInfoComplete(contentInfo){
 		console.warn("content", JSON.stringify(contentInfo))
