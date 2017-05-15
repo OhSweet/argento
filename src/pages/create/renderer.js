@@ -39,7 +39,7 @@ export default function() {
 
 			{/* CONDITIONALLY RENDERING TABS */}
 
-			<ScrollView style={{ marginTop: 30 }} >
+			<ScrollView >
 				{
 					this.state.activeTabIndex === 0
 					? (<BasicInfo onBasicInfoComplete={ this.onBasicInfoComplete.bind(this) }/>)

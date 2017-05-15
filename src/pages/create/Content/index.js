@@ -5,7 +5,8 @@ import {
 	View,
 	StyleSheet,
 	Text,
-	TextInput
+	TextInput,
+	Dimensions
 } from 'react-native'
 import {
 	Button,
@@ -15,6 +16,7 @@ import {
 }
 from "react-native-material-ui"
 
+import {RichTextEditor, RichTextToolbar} from 'react-native-zss-rich-text-editor';
 
 import styles from "../styles.js"
 
@@ -31,11 +33,24 @@ class BasicInfo extends Component {
 	isValidData() {
 		return true
 	}
+	onEditorInitialized() {
+		console.warn("it's ready!!")
+	}
 	render() {
 		return(
-			<View>
-				<View style={{ padding: 30 }}>
-				</View>
+			<View style={{padding: 20}}>
+		          <RichTextEditor
+					  style={{height: Dimensions.get('window').height * 0.3, width: Dimensions.get('window').width - 40}}
+		              ref={(r) => { this.richtext = r; console.log(r) } }
+		              initialTitleHTML={'<p>My title</p>'}
+		              initialContentHTML={'My text or story ... '}
+		              editorInitializedCallback={() => this.onEditorInitialized()}
+		          />
+		          <RichTextToolbar
+					actions={['bold','italic','unorderedList','orderedList','INST_LINK', 'REMOVE_FORMAT']}
+					ref={(r) => { console.log("is toolbar", r)}}
+		            getEditor={() => this.richtext}
+		          />
 
 				<Divider />
 

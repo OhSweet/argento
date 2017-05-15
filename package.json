@@ -20,7 +20,7 @@
     "react-native-qrcode-svg": "^4.0.1",
     "react-native-svg": "^5.1.7",
     "react-native-vector-icons": "^4.0.1",
-    "react-native-zss-rich-text-editor": "^1.0.2"
+    "react-native-zss-rich-text-editor": "github:n8armstrong/react-native-zss-rich-text-editor#native-web-view"
   },
   "devDependencies": {
     "babel-jest": "19.0.0",
