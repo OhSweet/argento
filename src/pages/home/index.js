@@ -4,7 +4,7 @@ import styles from "./styles.js"
 import {location} from "../../services/location"
 import {fragments} from "../../services/fragments"
 
-import {Text, View, Navigator, TouchableHighlight, ScrollView} from 'react-native';
+import {Text, View, TouchableHighlight, ScrollView} from 'react-native';
 
 import {Button, IconToggle} from "react-native-material-ui"
 import MyLocationMarker from "../../components/MyLocationMarker"

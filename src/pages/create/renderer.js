@@ -22,11 +22,7 @@ import {
 	Icon
 }
 from "react-native-material-ui"
-import {
-	Select,
-	Option
-}
-from "react-native-chooser";
+
 import styles from "./styles.js"
 
 import BasicInfo from "./BasicInfo"

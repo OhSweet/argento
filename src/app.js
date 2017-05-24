@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { Text, View, Navigator, TouchableHighlight, TextView, StatusBar , NativeModules} from 'react-native';
+import { Text, View, TouchableHighlight, TextView, StatusBar , NativeModules} from 'react-native';
+import { Navigator } from 'react-native-deprecated-custom-components'
 
 import { ThemeProvider } from 'react-native-material-ui';
 import routes from "./routes"

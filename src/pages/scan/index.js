@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import {
 	Text,
 	View,
-	Navigator,
 	TouchableHighlight,
 	StyleSheet,
 	TextInput,

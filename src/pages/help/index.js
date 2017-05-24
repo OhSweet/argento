@@ -3,7 +3,6 @@ import MapView from "react-native-maps"
 import {
 	Text,
 	View,
-	Navigator,
 	TouchableHighlight,
 	Button,
 	StyleSheet
