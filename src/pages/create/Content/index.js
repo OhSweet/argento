@@ -27,7 +27,17 @@ class BasicInfo extends Component {
 	}
 
 	completeData() {
-		console.warn("completed")
+		Promise.all([ this.richtext.getTitleHtml(), this.richtext.getContentHtml() ])
+		.then((promArray) => {
+
+			let title = promArray[0]
+			let contentHtml = promArray[1]
+			console.log("completData",{
+				title, contentHtml
+			})
+
+		})
+
 	}
 
 	isValidData() {
@@ -42,13 +52,15 @@ class BasicInfo extends Component {
 		          <RichTextEditor
 					  style={{height: Dimensions.get('window').height * 0.3, width: Dimensions.get('window').width - 40}}
 		              ref={(r) => { this.richtext = r; console.log(r) } }
-		              initialTitleHTML={'<p>My title</p>'}
-		              initialContentHTML={'My text or story ... '}
+		              initialTitleHTML={'My title'}
+					  titlePlaceholder="No title ... "
+					  contentPlaceholder={'My text or story ... '}
+					  initialContentHTML=""
+					  initialTitleHTML=""
 		              editorInitializedCallback={() => this.onEditorInitialized()}
 		          />
 		          <RichTextToolbar
 					actions={['bold','italic','unorderedList','orderedList','INST_LINK', 'REMOVE_FORMAT']}
-					ref={(r) => { console.log("is toolbar", r)}}
 		            getEditor={() => this.richtext}
 		          />
 
