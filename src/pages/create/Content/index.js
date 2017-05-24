@@ -50,14 +50,14 @@ class BasicInfo extends Component {
 		return(
 			<View style={{padding: 20}}>
 		          <RichTextEditor
-					  style={{height: Dimensions.get('window').height * 0.3, width: Dimensions.get('window').width - 40}}
-		              ref={(r) => { this.richtext = r; console.log(r) } }
-		              initialTitleHTML={'My title'}
-					  titlePlaceholder="No title ... "
-					  contentPlaceholder={'My text or story ... '}
-					  initialContentHTML=""
-					  initialTitleHTML=""
-		              editorInitializedCallback={() => this.onEditorInitialized()}
+					style={{height: Dimensions.get('window').height * 0.3, width: Dimensions.get('window').width - 40}}
+					ref={(r) => { this.richtext = r; console.log(r) } }
+					initialTitleHTML={'My title'}
+					titlePlaceholder="No title ... "
+					contentPlaceholder={'My text or story ... '}
+					initialContentHTML=""
+					initialTitleHTML=""
+					editorInitializedCallback={() => this.onEditorInitialized()}
 		          />
 		          <RichTextToolbar
 					actions={['bold','italic','unorderedList','orderedList','INST_LINK', 'REMOVE_FORMAT']}
