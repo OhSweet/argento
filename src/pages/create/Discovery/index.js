@@ -81,26 +81,28 @@ class Discovery extends Component {
 					{/* TODO Move these three into their own separate dumb components */}
 					{ InfoTexts(this.state.discoveryType )}
 				</View>
+				<Divider/>
+
+
+					{ this.state.discoveryType != 'qr'
+						?(
+							<View style={{ padding: 30 }}>
+								<Icon name="lock-outline" style={styles.iconStyle} />
+
+								<Text style={styles.heading}> Password protection</Text>
+
+								<View style={{ marginBottom: 15 }}></View>
+									<TextInput
+										secureTextEntry
+										style={{ 'textAlign': 'center'}}
+										onChangeText={(password) => this.setState({password})} />
+							</View>
+						): null
+					}
 
 				<Divider/>
-				<View style={{ padding: 30 }}>
-					<Icon name="lock-outline" style={styles.iconStyle} />
-
-					<Text style={styles.heading}>
-						Password protection
-					</Text>
-
-					<View style={{ marginBottom: 15 }}></View>
-
-					<TextInput
-						secureTextEntry
-						style={{textAlign: 'center'}}
-						onChangeText={(password) => this.setState({password})}
-					/>
 					{/* TODO Move these three into their own separate dumb components */}
 
-				</View>
-				<Divider/>
 				<View style={{ padding: 30 }}>
 					<Button
 						raised
