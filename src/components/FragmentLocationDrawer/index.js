@@ -4,7 +4,7 @@ import MapView from 'react-native-maps'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import {View} from "react-native"
 let imageSource = null
-Icon.getImageSource( 'location-arrow', 20, 'blue' ).then( ( source ) => imageSource = source )
+Icon.getImageSource( 'circle', 20, 'red' ).then( ( source ) => imageSource = source )
 
 const MyLocationMarker = (fragments) => {
 
