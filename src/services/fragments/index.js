@@ -1,4 +1,4 @@
-import { requestBase } from "../requestBase"
+import { requestBase } from "../requestbase"
 
 class Fragments {
 	getNearby( ) {

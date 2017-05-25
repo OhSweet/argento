@@ -1,49 +1,49 @@
 import React, { Component } from 'react';
-
-import {
-	Text,
-	View,
-	TouchableHighlight,
-	Button,
-	StyleSheet
-} from 'react-native';
+import {Text,View,TouchableHighlight,Button,StyleSheet,Image} from 'react-native';
 import { Drawer, Avatar } from "react-native-material-ui"
 import Container from "../container"
 import styles from "./styles"
 import routes from "../../routes.js"
 import Utils from "../../utils"
+import {identity} from "../../services/identity"
 
 class DrawerContent extends Component {
 
 	constructor( props ) {
 		super( props )
 		this.state = {
-			navigationalItems: this.createNavigationalItems( routes, this.props.navigator )
+			navigationalItems: this.createNavigationalItems( routes, this.props.navigator ),
+			userInfo: 'A',
+			userPhoto: 'https://facebook.github.io/react/img/logo_og.png'
 		}
+		this.getUserInfo.call(this)
 	}
+
+	getUserInfo( ){
+		identity.getUserInfo().then((info)=>{
+			if(info){
+				this.setState({userInfo: info,
+											userPhoto: info.picture.data.url})
+			}
+		})
+}
 	render( ) {
 		return (
 			<View style={styles.contentContainer}>
+
 				<Drawer>
 					<Drawer.Header>
 						<Drawer.Header.Account
-							avatar={< Avatar text = {
-							'A'
-						} />}
-							accounts={[
-							{
-								avatar: <Avatar text="B"/>
-							}, {
-								avatar: <Avatar text="C"/>
-							}
-						]}
+							avatar={<Avatar image={
+								<Image
+									style={{width: 50, height: 50, borderRadius: 100}}
+									source={{uri: this.state.userPhoto}}/>}/>}
 							footer={{
 							dense: true,
 							centerElement: {
-								primaryText: 'Reservio',
-								secondaryText: 'business@email.com'
-							},
-							rightElement: 'arrow-drop-down'
+								primaryText: this.state.userInfo.first_name+' '+this.state.userInfo.last_name,
+								secondaryText: this.state.userInfo.email
+							}
 						}}/>
 					</Drawer.Header>
 					<Drawer.Section

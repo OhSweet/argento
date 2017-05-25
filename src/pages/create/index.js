@@ -1,20 +1,9 @@
-import React, {
-	Component
-}
-from 'react';
-import {
-	fragments
-}
-from "../../services/fragments"
-import {
-	location
-}
-from "../../services/location"
-
+import React, {Component} from 'react';
+import {fragments} from "../../services/fragments"
+import {location} from "../../services/location"
 import Renderer from "./renderer.js"
 
-
-class Create extends Component {
+	class Create extends Component {
 	constructor( props ) {
 		super( props )
 		this.state = {

@@ -3,7 +3,6 @@ import Scan from './pages/scan'
 import Help from "./pages/help"
 import Login from "./pages/login"
 import Create from "./pages/create"
-// components
 
 const routes = {
 	home: {
@@ -11,7 +10,7 @@ const routes = {
 		Page: Home,
 		drawerInfo: {
 			name: "Explore",
-			icon: "bookmark-border"
+			icon: "map"
 		}
 	},
 	scan: {
@@ -19,7 +18,7 @@ const routes = {
 		Page: Scan,
 		drawerInfo: {
 			name: "Scan fragment",
-			icon: "bookmark-border"
+			icon: "settings-overscan"
 		}
 	},
 	help: {
@@ -27,7 +26,7 @@ const routes = {
 		Page: Help,
 		drawerInfo: {
 			name: "Help and support",
-			icon: "bookmark-border"
+			icon: "help-outline"
 		}
 	},
 	login: {
@@ -41,9 +40,19 @@ const routes = {
 		hideNavbar: false,
 		drawerInfo: {
 			name: "Create fragments",
-			icon: "bookmark-border"
+			icon: "add-location"
 		}
-	}
+	},
+		logout: {
+			title: "Login",
+			Page: Login,
+			hideNavbar: true,
+			drawerInfo: {
+				name: "Logout",
+				icon: "exit-to-app"
+			}
+		}
+
 }
 
 export default routes

@@ -1,8 +1,9 @@
 const styles = {
 	drawer: {
-		shadowColor: '#000000',
+		shadowColor: '#ccfff2',
 		shadowOpacity: 0.8,
-		shadowRadius: 3
+		shadowRadius: 3,
+		backgroundColor: '#ccfff2'
 	},
 	container: {
 		flex: 1
