@@ -4,7 +4,7 @@ import MapView from 'react-native-maps'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 let imageSource = null
-Icon.getImageSource( 'circle', 15, 'green' ).then( ( source ) => imageSource = source )
+Icon.getImageSource( 'circle', 15, 'blue' ).then( ( source ) => imageSource = source )
 
 const MyLocationMarker = ({ latitude, longitude }) => {
 	return ( <MapView.Marker
@@ -13,6 +13,11 @@ const MyLocationMarker = ({ latitude, longitude }) => {
 		latitude: latitude,
 		longitude: longitude
 	}}
+		anchor={{
+			x: 0.5,
+			y: 0.5
+		}}
+
 		title="title"
 		description="? desc"
 		image={imageSource}/> )
