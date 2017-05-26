@@ -43,8 +43,8 @@ export default function() {
 						this.state.activeTabIndex === 1
 						? (<Discovery onDiscoveryInfoComplete={ this.onDiscoveryInfoComplete.bind(this) }/>)
 						: (<Content
-							onContentInfoComplete={ this.onContentInfoComplete.bind(this) }
-							discoveryType={ this.state.discoveryInfo.discoveryType }
+								onContentInfoComplete={ this.onContentInfoComplete.bind(this) }
+								discoveryType={ this.state.discoveryInfo.discoveryType }
 						/> )
 					)
 				}
