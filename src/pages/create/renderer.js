@@ -60,16 +60,13 @@ export default function() {
 							active={ this.state.activeTabIndex == 0 }
 							icon="all-out"
 							label="Basic"
-							onPress={() => this.setState({ activeTabIndex: 0 })}
 						/>
 
 						<BottomNavigation.Action
 							key="detection"
-							disabled={true}
 							active={ this.state.activeTabIndex == 1 }
 							icon="explore"
-							label="Detection"
-							onPress={() => this.setState({ activeTabIndex: 1 })}
+							label="Detect"
 
 						/>
 						<BottomNavigation.Action
@@ -77,7 +74,6 @@ export default function() {
 							active={ this.state.activeTabIndex == 2 }
 							icon="receipt"
 							label="Content"
-							onPress={() => this.setState({ activeTabIndex: 2 })}
 						/>
 					</View>
 

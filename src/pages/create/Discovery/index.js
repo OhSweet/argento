@@ -6,7 +6,8 @@ import {
 	StyleSheet,
 	Text,
 	TextInput,
-	Picker
+	Picker,
+	LayoutAnimation
 } from 'react-native'
 import {
 	Button,
@@ -24,9 +25,11 @@ import InfoTexts from "./InfoTexts.stateless.js"
 class Discovery extends Component {
 	constructor(props) {
 		super(props)
+
 		this.state = {
 			busy: false,
 			discoveryType: "proximity",
+			distance: 50,
 			password: null
 		}
 	}
@@ -34,11 +37,14 @@ class Discovery extends Component {
 	completeData() {
 		let {
 			discoveryType,
-			password
+			password,
+			distance
 		} = this.state
+
 		this.props.onDiscoveryInfoComplete({
 			discoveryType,
-			password
+			password,
+			distance
 		})
 	}
 
@@ -84,7 +90,7 @@ class Discovery extends Component {
 				<Divider/>
 
 
-					{ this.state.discoveryType != 'qr'
+					{ this.state.discoveryType == 'proximity'
 						?(
 							<View style={{ padding: 30 }}>
 								<Icon name="lock-outline" style={styles.iconStyle} />
@@ -94,8 +100,27 @@ class Discovery extends Component {
 								<View style={{ marginBottom: 15 }}></View>
 									<TextInput
 										secureTextEntry
+										placeholder="No password"
 										style={{ 'textAlign': 'center'}}
 										onChangeText={(password) => this.setState({password})} />
+							</View>
+						): null
+					}
+					{
+						this.state.discoveryType == 'beacon' ? (
+							<View style={{ padding: 30 }}>
+								<Text> Will send notifications up to this amount of meters </Text>
+								<Picker
+									mode="dialog"
+									selectedValue={this.state.distance}
+									onValueChange={( distance ) => {
+										this.setState({ distance })
+									}}>
+										<Picker.Item label="50" value={ 50} />
+										<Picker.Item label="100" value={ 100 } />
+										<Picker.Item label="150" value ={ 150 } />
+
+								</Picker>
 							</View>
 						): null
 					}

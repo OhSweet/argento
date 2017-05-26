@@ -36,9 +36,16 @@ class QRCodeContent extends Component {
 	}
 
 	completeData() {
+		this.setState({
+			submitted: true
+		})
+
 		this.props.onContentInfoComplete({
 			content: this.state.imageUrl,
-			title: null
+			title: null,
+			type: 'image'
+		}).then(() => {
+			ToastAndroid.show('Saved to remote..in the future must make this redirect to my fragments !', ToastAndroid.SHORT)
 		})
 	}
 
@@ -49,7 +56,6 @@ class QRCodeContent extends Component {
 	saveQrToDisk() {
 		this.setState({ busy: true })
 
-		console.log(this.svg)
 		this.svg.toDataURL((data) => {
 
 			RNFS.writeFile(RNFS.CachesDirectoryPath+"/the_other_side.png", data, 'base64')
@@ -58,7 +64,7 @@ class QRCodeContent extends Component {
 			  })
 			  .then(() => {
 				  this.setState({ busy: false, imageSaved: true  })
-				  ToastAndroid.show('Saved !!!', ToastAndroid.SHORT)
+				  ToastAndroid.show('Saved to gallery !!', ToastAndroid.SHORT)
 			  })
 			  .catch((err) => {
 			    console.warn(err.message);
@@ -146,14 +152,14 @@ class QRCodeContent extends Component {
 				</View>
 				<Divider/>
 				<View style={{ padding: 30 }}>
-					<Button
-						raised
-						primary
-						text="Post"
-						upperCase={ false}
-						onPress={ this.completeData.bind(this) }
-						disabled={ !this.isValidData() }>
-					</Button>
+						<Button
+							raised
+							primary
+							text={ this.state.submitted ? ('Saving..') : ('Post')}
+							upperCase={ false}
+							onPress={ this.completeData.bind(this) }
+							disabled={ !this.isValidData() }>
+						</Button>
 				</View>
 
 			</View>
