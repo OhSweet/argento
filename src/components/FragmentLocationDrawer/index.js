@@ -1,13 +1,20 @@
 // STATELESS DUMB COMPONENT
 import React from "react"
 import MapView from 'react-native-maps'
-import Icon from 'react-native-vector-icons/FontAwesome'
-import {View} from "react-native"
-let imageSource = null
-Icon.getImageSource( 'circle', 20, 'red' ).then( ( source ) => imageSource = source )
+// import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from "react-native-vector-icons/MaterialIcons"
+import { View } from "react-native"
+
+const groups = require('../../pages/create/BasicInfo/groups.json')
+
+const iconBitmaps = {}
+
+groups.forEach((group) => {
+	Icon.getImageSource( group.icon, 25, 'black' )
+	.then( ( source ) => iconBitmaps[group.icon] = source )
+})
 
 const MyLocationMarker = (fragments) => {
-
 	let filtered = fragments.filter((obj) => {
 		return obj.location && obj.location.latitude
 	})
@@ -20,22 +27,19 @@ const MyLocationMarker = (fragments) => {
 			return ( <MapView.Marker
 				key={key}
 				coordinate={{
-				latitude: fragment.location.latitude,
-				longitude: fragment.location.longitude
-			}}
-				title={fragment.title}
-				description={fragment.description}
+					latitude: fragment.location.latitude,
+					longitude: fragment.location.longitude
+				}}
+				title={fragment.display.title}
+				description={fragment.display.description}
+				image={ iconBitmaps[fragment.display.icon] }
 				/> )
-		})}
+
+			})
+		}
 	</View>)
-	// return ( <MapView.Marker
-	// 	coordinate={{
-	// 	latitude: filtered[0].location.latitude,
-	// 	longitude: filtered[0].location.longitude
-	// }}
-	// 	title="title"
-	// 	description="? desc"
-	// 	/> )
+
+	// })
 }
 
 export default MyLocationMarker
