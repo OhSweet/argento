@@ -6,7 +6,8 @@ import {
 	StyleSheet,
 	Text,
 	TextInput,
-	Dimensions
+	Dimensions,
+	ToastAndroid
 } from 'react-native'
 import {
 	Button,
@@ -27,15 +28,19 @@ class RichTextContent extends Component {
 	}
 
 	completeData() {
+		this.setState({
+			submitted: true
+		})
+
 		Promise.all([ this.richtext.getTitleHtml(), this.richtext.getContentHtml() ])
 		.then((promArray) => {
-
 			let title = promArray[0]
-			let contentHtml = promArray[1]
-			console.log("completData",{
-				title, contentHtml
+			let content = promArray[1]
+			this.props.onContentInfoComplete({
+				title: title, content: content, type: 'richtext'
+			}).then(() => {
+				ToastAndroid.show('Saved to remote..in the future must make this redirect to my fragments !', ToastAndroid.SHORT)
 			})
-
 		})
 
 	}
@@ -49,12 +54,11 @@ class RichTextContent extends Component {
 			<View style={{padding: 20}}>
 		          <RichTextEditor
 					style={{height: Dimensions.get('window').height * 0.3, width: Dimensions.get('window').width - 40}}
-					ref={(r) => { this.richtext = r; console.log(r) } }
+					ref={(r) => { this.richtext = r} }
 					initialTitleHTML={'My title'}
 					titlePlaceholder="No title ... "
 					contentPlaceholder={'My text or story ... '}
 					initialContentHTML=""
-					initialTitleHTML=""
 					editorInitializedCallback={() => this.onEditorInitialized()}
 		          />
 		          <RichTextToolbar
@@ -69,11 +73,10 @@ class RichTextContent extends Component {
 					<Button
 						raised
 						primary
-						text="Complete"
-						upperCase={false}
+						text={ this.state.submitted ? ('Saving..') : ('Post')}
+						upperCase={ false}
 						onPress={ this.completeData.bind(this) }
 						disabled={ !this.isValidData() }>
-
 					</Button>
 				</View>
 			</View>

@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {fragments} from "../../services/fragments"
 import {location} from "../../services/location"
 import Renderer from "./renderer.js"
+import {itemCreator} from "../../services/itemCreator"
 
-	class Create extends Component {
+class Create extends Component {
 	constructor( props ) {
 		super( props )
 		this.state = {
@@ -14,14 +15,27 @@ import Renderer from "./renderer.js"
 	}
 
 	onBasicInfoComplete(basicInfo) {
-		console.warn("basic info was ok", JSON.stringify(basicInfo))
+		this.setState({
+			basicInfo: basicInfo,
+			activeTabIndex: 1
+		})
 	}
+
 	onDiscoveryInfoComplete(discoveryInfo){
-		this.setState({ discoveryInfo })
-		console.warn("current state in main is", JSON.stringify(this.state))
+		this.setState({
+			discoveryInfo: discoveryInfo,
+			activeTabIndex: 2
+		})
 	}
+
 	onContentInfoComplete(contentInfo){
-		console.warn("content", JSON.stringify(contentInfo))
+		this.setState({
+			contentInfo
+		})
+		let { basicInfo, discoveryInfo } = this.state
+
+		return itemCreator.createOnSiteFromModel({ basicInfo, discoveryInfo, contentInfo})
+
 	}
 
 	createFragment() {

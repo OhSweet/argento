@@ -25,10 +25,6 @@ import QRCodeContent from "./qrCode"
 
 
 class BasicInfo extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {}
-	}
 
 	render() {
 		return(
@@ -36,10 +32,14 @@ class BasicInfo extends Component {
 				{
 					this.props.discoveryType == 'qr'
 					? (
-						<QRCodeContent />
+						<QRCodeContent
+							{ ...this.props }
+						/>
 					)
 					: (
-						<RichTextContent />
+						<RichTextContent
+							{ ...this.props }
+						/>
 					)
 				}
 			</View>

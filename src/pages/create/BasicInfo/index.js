@@ -28,8 +28,8 @@ class BasicInfo extends Component {
 
 		this.state = {
 			busy: false,
-			title: "",
-			description: "",
+			title: "Trees in spring",
+			description: "Sooo beautiful !",
 			checkedGroupIndex: 0
 		}
 	}
@@ -48,7 +48,7 @@ class BasicInfo extends Component {
 		})
 	}
 	isValidData() {
-		return(this.state.description && this.state.title && this.checkedGroupIndex )
+		return (this.state.description && this.state.title)
 	}
 	render() {
 		return(
@@ -128,6 +128,7 @@ class BasicInfo extends Component {
 
 					</Button>
 				</View>
+
 			</View>
 		)
 	}

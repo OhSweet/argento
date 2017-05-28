@@ -4,19 +4,13 @@ import {
 
 class Location {
 
-	constructor() {
-		this.options = {
-			enableHighAccuracy: false,
-			timeout: 1000,
-			maximumAge: 1000
-		}
-	}
+	constructor() {}
 
 	getCurrent() {
 		return new Promise((resolve, reject) => {
 			navigator.geolocation.getCurrentPosition((position) => {
 				resolve(position.coords)
-			}, (error) => null, this.options);
+			}, (error) => null );
 		})
 	}
 
