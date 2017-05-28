@@ -12,7 +12,8 @@ import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
 import FBLoginView from './FBLoginView.js'
 import {identity} from "../../services/identity"
 import {Icon} from 'react-native-material-ui'
-const window = Dimensions.get('window');
+const window = Dimensions.get('window')
+const fbLogo = require('../../assets/facebook-logo-png-30.png')
 
 class Login extends Component {
     constructor(props) {
@@ -62,6 +63,10 @@ class Login extends Component {
                     style={this.state.busy
                     ? [styles.fullPage, styles.noDisplay]
                     : styles.fullPage}>
+
+                      <Image source={fbLogo}
+                    style={{width: 50, height: 50}}/>
+                    
                     <FBLogin
                         style={{
                         height: 300,

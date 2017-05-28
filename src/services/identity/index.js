@@ -28,6 +28,10 @@ class Identity {
 		this.token = null
 		return AsyncStorage.removeItem( 'sessionToken' )
 	}
+	removeUserInfo( ) {
+		this.userinfo = null
+		return AsyncStorage.removeItem( 'sessionUserinfo' )
+	}
 
 	setUserinfo( userinfo ) {
 		this.userinfo = userinfo

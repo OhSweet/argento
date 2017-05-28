@@ -1,8 +1,9 @@
-import Home from './pages/home'
+	import Home from './pages/home'
 import Scan from './pages/scan'
 import Help from "./pages/help"
 import Login from "./pages/login"
 import Create from "./pages/create"
+import ViewFragment from "./pages/viewFragment"
 
 const routes = {
 	home: {
@@ -43,15 +44,11 @@ const routes = {
 			icon: "add-location"
 		}
 	},
-		logout: {
-			title: "Login",
-			Page: Login,
-			hideNavbar: true,
-			drawerInfo: {
-				name: "Logout",
-				icon: "exit-to-app"
-			}
-		}
+	viewFragment: {
+		title: "View Fragment",
+		Page: ViewFragment,
+		hideNavbar: false
+	}
 
 }
 

@@ -4,6 +4,8 @@ import React, {
 import MapView from "react-native-maps"
 import styles from "./styles.js"
 import location from "../../services/location"
+import FragmentList from "../../components/FragmentList"
+
 import {
 	fragments
 } from "../../services/fragments"
@@ -103,8 +105,7 @@ class Home extends Component {
 				{/* TODO this piece needs to be moved into dumb components, style needs to be moved away */}
 
 				<ScrollView style={styles.list}>
-					<Text> HERE BE LIST </Text>
-
+					<FragmentList {...this.props}/>
 				</ScrollView>
 			</View>
 		);
