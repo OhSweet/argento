@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableHighlight, ScrollView } from 'react-native'
 import MapView from "react-native-maps"
-import { Button, IconToggle } from "react-native-material-ui"
+import { Button } from "react-native-material-ui"
 import Icon from 'react-native-vector-icons/FontAwesome'
 
+import FragmentList from "../../components/FragmentList"
 import MyLocationMarker from "../../components/MyLocationMarker"
 import FragmentLocationDrawer from "../../components/FragmentLocationDrawer"
 
 import location from "../../services/location"
-import { fragments
-} from "../../services/fragments"
+import { fragments } from "../../services/fragments"
 
 import styles from "./styles.js"
 
@@ -44,19 +44,19 @@ class Home extends Component {
 			.watchPosition(( lastPosition ) => {
 				let coords = lastPosition.coords
 				fragments
-				.getNearby( )
-				.then(( fragments ) => {
-					let newState = Object.assign({}, this.state, {
-						currentPosition: {
-							latitude: coords.latitude,
-							longitude: coords.longitude
-						},
-						fragments: fragments
+					.getNearby( )
+					.then(( fragments ) => {
+						let newState = Object.assign({}, this.state, {
+							currentPosition: {
+								latitude: coords.latitude,
+								longitude: coords.longitude
+							},
+							fragments: fragments
+						})
+
+						this.setState( newState )
+
 					})
-
-					this.setState( newState )
-
-				})
 			}, ( err ) => console.warn( err ), { enableHighAccuracy: false })
 	}
 	componentWillUnmount( ) {
@@ -97,14 +97,9 @@ class Home extends Component {
 				{/* TODO this piece needs to be moved into dumb components, style needs to be moved away */}
 
 				<ScrollView style={styles.list}>
-					<Text>
-						HERE BE LIST
-					</Text>
-
+					<FragmentList {...this.props}/>
 				</ScrollView>
 			</View>
-		);
+		)
 	}
-
 }
-export default Home
