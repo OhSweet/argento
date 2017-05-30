@@ -11,11 +11,10 @@ import {
 } from 'react-native'
 
 import { Button, Divider, Icon, Checkbox } from "react-native-material-ui"
-
 import RNFS from "react-native-fs"
+import QRCode from 'react-native-qrcode-svg'
 
 import styles from "../styles.js"
-import QRCode from 'react-native-qrcode-svg';
 
 class QRCodeContent extends Component {
 	constructor( props ) {
@@ -68,9 +67,7 @@ class QRCodeContent extends Component {
 		return (
 
 			<View>
-				<View style={{
-					padding: 30
-				}}>
+				<View style={styles.padding30}>
 					<Icon name="face" style={styles.iconStyle}/>
 
 					<Text style={styles.heading}>
@@ -85,32 +82,20 @@ class QRCodeContent extends Component {
 
 				</View>
 
-				<View style={{
-					padding: 30
-				}}>
-					<View style={{
-						flexDirection: 'row',
-						alignItems: 'center',
-						justifyContent: 'space-around'
-					}}>
-
+				<View styles={styles.padding30}>
+					<View style={styles.flexBoth}>
 						<View>
+							Error: Source sample is missing.
 							<Text>
 								Generated QR
 							</Text>
-							<QRCode style={{
-								height: 200,
-								width: 200
-							}} getRef={( c ) => ( this.svg = c )} value={this.state.imageUrl}/>
+							<QRCode style={styles.imagesSizes} getRef={( c ) => ( this.svg = c )} value={this.state.imageUrl}/>
 						</View>
 						<View>
 							<Text>
 								Image preview
 							</Text>
-							<Image style={{
-								height: 100,
-								width: 100
-							}} source={{
+							<Image style={styles.imagesSizes} source={{
 								uri: this.state.imageUrl
 							}}/>
 						</View>
@@ -132,9 +117,7 @@ class QRCodeContent extends Component {
 						.bind( this )}></Button>
 				</View>
 				<Divider/>
-				<View style={{
-					padding: 30
-				}}>
+				<View style={styles.padding30}>
 					<Button
 						raised
 						primary

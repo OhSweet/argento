@@ -1,7 +1,4 @@
-import {
-	StyleSheet
-}
-from "react-native"
+import { StyleSheet } from "react-native"
 
 export default styles = StyleSheet.create({
 	heading: {
@@ -33,5 +30,29 @@ export default styles = StyleSheet.create({
 	inactiveItem: {
 		color: 'grey',
 		fontStyle: 'italic'
+	},
+	padding30: {
+		padding: 30
+	},
+	flexBoth: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-around'
+	},
+	imagesSizes: {
+		height: 200,
+		width: 200
+	},
+	mainContentContainer: {
+		flex: 1,
+		flexDirection: "column",
+		justifyContent: "space-between",
+		alignItems: "stretch"
+	},
+	bottomTabs: {
+		flex: 1,
+		flexDirection: "row",
+		justifyContent: "space-around",
+		alignItems: "center"
 	}
 });
