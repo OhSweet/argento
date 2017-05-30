@@ -15,5 +15,8 @@ export default styles = StyleSheet.create({
 	},
 	list: {
 		flex: 1
+	},
+	statusBar: {
+		height: 24
 	}
 });
