@@ -21,24 +21,13 @@ class RichTextContent extends Component {
 	completeData( ) {
 		this.setState({ submitted: true })
 
-		Promise.all([
-			this
-				.richtext
-				.getTitleHtml( ),
-			this
-				.richtext
-				.getContentHtml( )
-		]).then(( promArray ) => {
-			let title = promArray[0]
-			let content = promArray[1]
-			this
-				.props
-				.onContentInfoComplete({ title: title, content: content, type: 'richtext' })
-				.then(( ) => {
-					ToastAndroid.show( 'Saved to remote..in the future must make this redirect to my fragments !', ToastAndroid.SHORT )
-				})
-		})
-
+		this
+			.richtext
+			.getContentHtml( )
+			.then(( content ) => this.props.onContentInfoComplete({ content: content, type: 'richtext' }))
+			.then(( ) => {
+				ToastAndroid.show( 'Saved to remote..in the future must make this redirect to my fragments !', ToastAndroid.SHORT )
+			})
 	}
 
 	isValidData( ) {
@@ -60,11 +49,13 @@ class RichTextContent extends Component {
 					ref={( r ) => {
 						this.richtext = r
 					}}
+					hiddenTitle
 					initialTitleHTML={'My title'}
 					titlePlaceholder="No title ... "
 					contentPlaceholder={'My text or story ... '}
-					initialContentHTML=""
+					initialContentHTML="<em> I want to say to the world that ... </em> "
 					editorInitializedCallback={( ) => this.onEditorInitialized( )}/>
+
 				<RichTextToolbar
 					actions={[
 						'bold',
@@ -72,8 +63,9 @@ class RichTextContent extends Component {
 						'unorderedList',
 						'orderedList',
 						'INST_LINK',
-						'REMOVE_FORMAT'
-					]}
+						'REMOVE_FORMAT',
+						'setBackgroundColor'
+				]}
 					getEditor={( ) => this.richtext}/>
 
 				<Divider/>
@@ -83,12 +75,12 @@ class RichTextContent extends Component {
 						raised
 						primary
 						text={this.state.submitted
-							? ( 'Saving..' )
-							: ( 'Post' )}
+						? ( 'Saving..' )
+						: ( 'Post' )}
 						upperCase={false}
 						onPress={this
-							.completeData
-							.bind( this )}
+						.completeData
+						.bind( this )}
 						disabled={!this.isValidData( )}></Button>
 				</View>
 			</View>

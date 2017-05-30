@@ -10,7 +10,7 @@ import {
 	ScrollView
 } from 'react-native'
 
-import { Divider, Container, Card, BottomNavigation, Icon } from "react-native-material-ui"
+import { Divider, Container, BottomNavigation, Icon } from "react-native-material-ui"
 
 import styles from "./styles.js"
 
@@ -33,9 +33,12 @@ export default function ( ) {
 						? ( <Discovery onDiscoveryInfoComplete={this
 							.onDiscoveryInfoComplete
 							.bind( this )}/> )
-						: ( <Content onContentInfoComplete={this
-							.onContentInfoComplete
-							.bind( this )} discoveryType={this.state.discoveryInfo.discoveryType}/> ))
+						: ( <Content
+							onContentInfoComplete={this
+								.onContentInfoComplete
+								.bind( this )}
+							title={this.state.BasicInfo.title}
+							discoveryType={this.state.discoveryInfo.discoveryType}/> ))
 				}
 
 			</ScrollView>

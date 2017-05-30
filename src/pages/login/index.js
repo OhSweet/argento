@@ -66,7 +66,7 @@ class Login extends Component {
 
                       <Image source={fbLogo}
                     style={{width: 50, height: 50}}/>
-                    
+
                     <FBLogin
                         style={{
                         height: 300,

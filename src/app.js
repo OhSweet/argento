@@ -14,7 +14,7 @@ import { ThemeProvider } from 'react-native-material-ui';
 import routes from "./routes"
 import Container from "./common/container"
 import CustomNavigationLayout from "./common/customnavigationlayout"
-import styles from "../styles"
+import styles from "./styles"
 
 const UIManager = NativeModules.UIManager;
 
