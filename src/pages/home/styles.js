@@ -11,9 +11,16 @@ export default styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	map: {
-		flex: 3
+		flex: 1.4
 	},
 	list: {
-		flex: 1
+		flex: 1,
+		backgroundColor: 'transparent'
+	},
+	divider: {
+		backgroundColor: 'lightblue',
+		height: 3,
+		marginLeft: 9,
+		marginRight: 12
 	}
 });

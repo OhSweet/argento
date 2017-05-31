@@ -12,7 +12,7 @@ const InfoTexts = (discoveryType) => {
 			{
 				discoveryType === 'proximity' ? (
 					<Text>
-						This means only users that are in the area can discovery your fragment no the map and access it's contents.
+						This means only users that are in the area can discover your fragment on the map and access its contents.
 					</Text>)
 				: null
 			}

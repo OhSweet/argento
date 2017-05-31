@@ -1,26 +1,26 @@
 const dummyFragments = [
   { id: 1,
-    icon: 'restaurant',
-    title:'best soup',
+    icon: 'insert-emoticon',
+    title:'Where we first met',
     description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    type:'beacon'
+    type:'proximity'
   },
   { id: 2,
-    icon: 'restaurant',
-    title:'best soup',
+    icon: 'account-balance',
+    title:'Magic building',
     description:'description about the soup',
     type:'qr'
   },
   { id: 3,
-    icon: 'restaurant',
-    title:'best soup',
-    description:'description about the soup',
-    type:'proximity'
+    icon: 'record-voice-over',
+    title:'50% off',
+    description:'Come get clothes at MyShop',
+    type:'beacon'
   },
   { id: 4,
-    icon: 'restaurant',
-    title:'best soup',
-    description:'description about the soup',
+    icon: 'lightbulb-outline',
+    title:'What if ...',
+    description:'Dying in this park just a form of respawning',
     type:'proximity'
   },
   { id: 5,
