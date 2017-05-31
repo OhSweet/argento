@@ -22,7 +22,7 @@ class FBLoginView extends Component {
 
     render() {
         return (
-            <View style={[]}>
+            <View style={{left:0, right:0, minWidth:240}}>
                 <Icon.Button
                     onPress={() => {
                     if (!this.context.isLoggedIn) {
@@ -40,7 +40,9 @@ class FBLoginView extends Component {
                         flex: 1,
                         flexDirection: 'column',
                         justifyContent: 'center',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        left:0,
+                        right:0
                     }}>
                         <Text style={{
                           color: 'white',

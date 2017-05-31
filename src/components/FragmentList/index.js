@@ -43,7 +43,7 @@ class FragmentList extends Component {
                             <Icon name={rowData.icon} style={styles.textStyle}/>
                         </View>
                         <View style={styles.rightView}>
-                            <Text style={styles.textStyle && styles.titleStyle}>
+                            <Text style={styles.titleStyle}>
                                 {rowData.title + '(' + rowData.type + ')'}
                             </Text>
                             <Text style={styles.textStyle} ellipsizeMode='tail' numberOfLines={1}>{rowData.description}</Text>

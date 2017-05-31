@@ -1,19 +1,12 @@
 import React, {PropTypes, Component} from 'react';
-import {
-    Text,
-    View,
-    TouchableHighlight,
-    Button,
-    StyleSheet,
-    Image,
-    Dimensions
-} from 'react-native';
+import {Text,View,TouchableHighlight,Button,StyleSheet,Image,Dimensions} from 'react-native';
 import {FBLogin, FBLoginManager} from 'react-native-facebook-login';
 import FBLoginView from './FBLoginView.js'
 import {identity} from "../../services/identity"
 import {Icon} from 'react-native-material-ui'
 const window = Dimensions.get('window')
-const fbLogo = require('../../assets/facebook-logo-png-30.png')
+const appLogo = require('../../assets/theOtherSideLogo.png')
+const bkImg = require('../../assets/background.jpg')
 
 class Login extends Component {
     constructor(props) {
@@ -64,28 +57,65 @@ class Login extends Component {
                     ? [styles.fullPage, styles.noDisplay]
                     : styles.fullPage}>
 
-                      <Image source={fbLogo}
-                    style={{width: 50, height: 50}}/>
-                    
-                    <FBLogin
-                        style={{
-                        height: 300,
-                        paddingTop: 50,
-                        marginBottom: 0
-                    }}
-                        buttonView={< FBLoginView />}
-                        ref={(fbLogin) => {
-                        this.fbLogin = fbLogin
-                    }}
-                        permissions={["email", "user_friends"]}
-                        loginBehavior={FBLoginManager.LoginBehaviors.Native}
-                        onLogin={this.onLogin.bind(this)}
-                        onLogout={this.onLogout.bind(this)}
-                        onLoginFound={this.onLoginFound.bind(this)}
-                        onLoginNotFound={this.onLoginNotFound.bind(this)}
-                        onError={this.onLoginError.bind(this)}
-                        onCancel={this.onLoginCancel.bind(this)}
-                        onPermissionsMissing={this.onLoginError.bind(this)}/>
+                    <View style={styles.bkImgContainer}>
+                      <Image source={bkImg} style={styles.bkImg}/>
+                    </View>
+                    <View style={styles.innerPage}>
+                      <View style={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginBottom: -400
+                      }}>
+                      <Text style={{
+                        fontWeight:'bold',
+                        color:'black',
+                        marginRight: -4,
+                        fontSize: 25
+                      }}>The</Text>
+                      <Image source={appLogo} style={{  width: 50,
+                        height: 50}}/>
+                        <Text style={{
+                          fontWeight:'bold',
+                          color:'black',
+                          marginLeft: -4,
+                          fontSize: 25
+                        }}>therSide</Text>
+                      </View>
+                      <View style={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        top: 0,
+                        //backgroundColor:'red',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                      }}>
+                      <FBLogin
+                          style={{
+                          width:null,
+                          height: 300,
+                          paddingTop: 50,
+                          marginBottom: 0,
+                          left: 0,
+                          right: 0,
+                      }}
+                          buttonView={< FBLoginView />}
+                          ref={(fbLogin) => {
+                          this.fbLogin = fbLogin
+                      }}
+                          permissions={["email", "user_friends"]}
+                          loginBehavior={FBLoginManager.LoginBehaviors.Native}
+                          onLogin={this.onLogin.bind(this)}
+                          onLogout={this.onLogout.bind(this)}
+                          onLoginFound={this.onLoginFound.bind(this)}
+                          onLoginNotFound={this.onLoginNotFound.bind(this)}
+                          onError={this.onLoginError.bind(this)}
+                          onCancel={this.onLoginCancel.bind(this)}
+                          onPermissionsMissing={this.onLoginError.bind(this)}/>
+
+                    </View>
+                  </View>
                 </View>
 
                 <View
@@ -96,7 +126,7 @@ class Login extends Component {
                     ]
                     : [
                         styles.fullPage,
-                        styles.noDisplay
+                        styles.noDisplay,
                     ]}>
                     <Text>Loading</Text>
                 </View>
@@ -112,14 +142,35 @@ const styles = {
     },
     fullPage: {
         position: 'absolute',
-        justifyContent: 'space-between',
-        alignItems: 'stretch',
         overflow: 'hidden',
         top: 0,
         left: 0,
         right: 0,
-        bottom: 0
+        bottom: 0,
+
+    },
+    bkImgContainer: {
+        flex: 1,
+        position: 'relative'
+    },
+    bkImg:{
+      flex: 1,
+      width: null,
+      height: null,
+    //  resizeMode: 'cover'
+    },
+    innerPage: {
+      flex: 1,
+      position: 'absolute',
+      justifyContent: 'center',
+      alignItems: 'center',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+
     }
+
 
 }
 
