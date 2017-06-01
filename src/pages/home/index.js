@@ -51,7 +51,7 @@ class Home extends Component {
 				this.setState( newState )
 
 			})
-		}, ( err ) => console.warn( err ), { enableHighAccuracy: true })
+		}, ( err ) => console.warn( err ), { enableHighAccuracy: false })
 	}
 	componentWillUnmount( ) {
 		navigator.geolocation.clearWatch( this.watchID );
