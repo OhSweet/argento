@@ -37,7 +37,7 @@ export default function ( ) {
 							onContentInfoComplete={this
 								.onContentInfoComplete
 								.bind( this )}
-							title={this.state.BasicInfo.title}
+							title={this.state.basicInfo.title}
 							discoveryType={this.state.discoveryInfo.discoveryType}/> ))
 				}
 

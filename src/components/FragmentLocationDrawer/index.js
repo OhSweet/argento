@@ -11,7 +11,7 @@ const iconBitmaps = {}
 
 groups.forEach(( group ) => {
 	Icon
-		.getImageSource( group.icon, 25, 'black' )
+		.getImageSource( group.icon, 17, '#333333' )
 		.then( ( source ) => iconBitmaps[group.icon] = source )
 })
 
@@ -31,6 +31,10 @@ const MyLocationMarker = ( fragments ) => {
 				coordinate={{
 					latitude: fragment.location.latitude,
 					longitude: fragment.location.longitude
+				}}
+				anchor={{
+					x: 0.5,
+					y: 0.5
 				}}
 				title={fragment.display.title}
 				description={fragment.display.description}

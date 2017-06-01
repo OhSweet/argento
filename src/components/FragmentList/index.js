@@ -8,7 +8,7 @@ import {
 	Image,
 	ListView
 } from 'react-native';
-import dummyFragments from './dummyFragments.js'
+
 import { Divider, Icon, Card } from 'react-native-material-ui'
 import styles from './styles.js'
 import routes from "../../routes.js"
@@ -20,8 +20,9 @@ var ds = new ListView.DataSource({
 class FragmentList extends Component {
 	constructor( props ) {
 		super( props )
+		console.warn("fragments props are", this.props.fragments)
 		this.state = {
-			dataSource: ds.cloneWithRows( dummyFragments )
+			dataSource: ds.cloneWithRows( this.props.fragments )
 		}
 	}
 	onPressItem( fragmentId ) {
@@ -34,13 +35,13 @@ class FragmentList extends Component {
 	render( ) {
 		return (
 			<ListView
-				dataSource={this.state.dataSource}
+				dataSource={  ds.cloneWithRows( this.props.fragments ) }
 				renderRow={( rowData ) => (
 					<View style={ styles.card } elevation={1}>
 
 						<View style={styles.leftView} elevation={3}>
 							<View style={ styles.internalLeftView}>
-								<Icon name={rowData.icon} style={styles.textStyle}/>
+								<Icon name={rowData.display.icon} size={20}/>
 							</View>
 						</View>
 
@@ -63,11 +64,33 @@ class FragmentList extends Component {
 							<View style={styles.container}>
 								<View style={styles.rightView}>
 									<Text style={styles.titleStyle}>
-										{rowData.title + '(' + rowData.type + ')'}
+										{rowData.display.title}
 									</Text>
-									<Text style={styles.textStyle} ellipsizeMode='tail' numberOfLines={1}>{rowData.description}</Text>
+									<Text style={styles.textStyle} ellipsizeMode='tail' numberOfLines={1}>{rowData.display.description}</Text>
 								</View>
-								<Divider/>
+
+								<View style={styles.detailsview}>
+									{
+										rowData.content.type === 'richtext' ? (
+											<Icon styles={styles.iconStyle} color='lightblue' name="chat" size={15}/>
+										): (
+											<Icon styles={styles.iconStyle} color='lightblue' name="settings-overscan" size={15}/>
+										)
+									}
+									{
+										rowData.content.discovery === 'beacon'
+										? (
+											<Icon styles={styles.iconStyle} color='lightgreen' name="wifi-tethering" size={15}/>
+										)
+										: null
+									}
+									{ rowData.display.protected ? (
+										<Icon style={styles.iconStyle} color='orange' name="lock" size={15}/>
+									): null }
+
+								</View>
+
+
 							</View>
 						</Card>
 					</View>

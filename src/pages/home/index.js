@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component  } from 'react';
 import { Text, View, TouchableHighlight, ScrollView } from 'react-native'
 import MapView from "react-native-maps"
 import { Button } from "react-native-material-ui"
@@ -51,7 +51,7 @@ class Home extends Component {
 				this.setState( newState )
 
 			})
-		}, ( err ) => console.warn( err ), { enableHighAccuracy: false })
+		}, ( err ) => console.warn( err ), { enableHighAccuracy: true })
 	}
 	componentWillUnmount( ) {
 		navigator.geolocation.clearWatch( this.watchID );
@@ -84,7 +84,10 @@ class Home extends Component {
 						</View>
 						<View>
 							{/* TODO this circle needs his own shit */}
-							<MapView.Circle radius={50} center={this.state.currentPosition} fillColor="rgba(120, 255, 255, 0.2)" strokeWidth={1}/>
+							<MapView.Circle radius={50} center={this.state.currentPosition} fillColor="rgba(90, 200, 255, 0.2)" strokeWidth={0}/>
+
+							<MapView.Circle radius={52} center={this.state.currentPosition} fillColor="rgba(90, 200, 255, 0.2)" strokeWidth={0}/>
+
 						</View>
 					</MapView.Animated>
 					<View style={styles.divider}></View>
@@ -93,7 +96,12 @@ class Home extends Component {
 
 				{/* TODO this piece needs to be moved into dumb components, style needs to be moved away */}
 				<ScrollView style={styles.list} overScrollMode="always">
-					<FragmentList {...this.props}/>
+					{
+						this.state.fragments.length ? (
+							<FragmentList {...this.props} fragments={ this.state.fragments } />
+						):
+						( <Text> No fragments </Text> )
+					}
 				</ScrollView>
 			</View>
 		)

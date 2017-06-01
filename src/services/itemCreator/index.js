@@ -19,28 +19,34 @@ class ItemCreator {
 							longitude: coords.longitude
 						}
 					},
-					content: {}
 				}
 			})
-			.then(({ fragment, content }) => {
+			.then(({ fragment }) => {
 				fragment.display = {
 					title: basicInfo.title,
 					description: basicInfo.description,
 					icon: basicInfo.group.icon,
 					syncId: basicInfo.group.syncId,
-					group: basicInfo.group.text
+					group: basicInfo.group.text,
+					protected: !!discoveryInfo.password,
+					distance: discoveryInfo.distance
 				}
 
 				fragment.content = {}
 
-				discoveryInfo.discoveryType == 'qr'
-					? ( fragment.content.type === 'qr' )
+				discoveryInfo.discoveryType === 'qr'
+					? ( fragment.content.type = 'qr' )
 					: ( fragment.content.type = 'richtext' )
-				return { fragment, content }
+
+				discoveryInfo.discoveryType === 'beacon'
+					? (fragment.content.discovery = 'beacon')
+					: (fragment.content.discovery = 'default')
+
+				return { fragment }
 			})
-			.then(({ fragment, content }) => {
-				content.type = contentInfo.type
-				content.body = contentInfo.content
+			.then(({ fragment }) => {
+				fragment.content.body = contentInfo.content
+				fragment.content.password = discoveryInfo.password
 				// content password here in the future ... !!!
 				return fragments.create( fragment )
 

@@ -9,11 +9,10 @@ export default styles = StyleSheet.create({
 		borderBottomWidth: 1,
 		borderTopWidth: 0,
 		borderBottomColor: 'white',
-		flexWrap: 'wrap',
 
 	},
 	leftView:{
-		flex:1,
+		flex:10,
 		width: 50,
 		left: 5,
 		padding: 5,
@@ -36,9 +35,11 @@ export default styles = StyleSheet.create({
 		paddingRight: 5,
 		paddingBottom: 10,
 		paddingTop: 10,
+		flex: 2
 	},
 	textStyle:{
 		flexWrap: 'wrap',
+		fontSize: 12
 	},
 	titleStyle:{
 		fontWeight: 'bold',
@@ -75,5 +76,15 @@ export default styles = StyleSheet.create({
 		backgroundColor: 'lightblue',
 		height: 20,
 		width: 4
+	},
+	detailsview: {
+		flexDirection: 'row-reverse',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		marginLeft: 15,
+		width: 35
+	},
+	iconStyle: {
+		height: 20
 	}
 });

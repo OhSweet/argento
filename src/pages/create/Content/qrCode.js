@@ -82,10 +82,9 @@ class QRCodeContent extends Component {
 
 				</View>
 
-				<View styles={styles.padding30}>
+				<View style={styles.padding30}>
 					<View style={styles.flexBoth}>
 						<View>
-							Error: Source sample is missing.
 							<Text>
 								Generated QR
 							</Text>
