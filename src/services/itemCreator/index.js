@@ -7,8 +7,6 @@ import { fragments } from "../fragments"
 class ItemCreator {
 	createOnSiteFromModel({ basicInfo, discoveryInfo, contentInfo }) {
 
-		console.warn( 'ON SITE CREATOR', basicInfo, discoveryInfo, contentInfo )
-
 		return location
 			.getCurrent( )
 			.then(( coords ) => {
@@ -18,10 +16,7 @@ class ItemCreator {
 							latitude: coords.latitude,
 							longitude: coords.longitude
 						},
-						geo:{
-							type : "Point",
-							coordinates: [ Number(coords.longitude), Number(coords.latitude)]
-						}
+						geo:[ Number(coords.longitude), Number(coords.latitude)]
 					},
 				}
 			})
@@ -52,6 +47,7 @@ class ItemCreator {
 				fragment.content.body = contentInfo.content
 				fragment.content.password = discoveryInfo.password
 				// content password here in the future ... !!!
+				console.warn('final fragment is', fragment)
 				return fragments.create( fragment )
 
 				// return { fragment, content }
