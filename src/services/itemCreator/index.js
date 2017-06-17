@@ -17,6 +17,10 @@ class ItemCreator {
 						location: {
 							latitude: coords.latitude,
 							longitude: coords.longitude
+						},
+						geo:{
+							type : "Point",
+							coordinates: [ Number(coords.longitude), Number(coords.latitude)]
 						}
 					},
 				}

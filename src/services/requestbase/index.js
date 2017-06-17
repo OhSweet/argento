@@ -10,14 +10,18 @@ class RequestBase {
 		})
 	}
 
-	makeCall( method, endpoint, data, params) {
+	makeCall( method, endpoint, data, params, headers) {
+		let hs = Object.assign(
+			{}, headers, {
+				Authorization: 'Bearer ' + this.accessToken
+			}
+		)
+
 		return axios({
 			method: method,
 			url: `${ baseEndpoint }${ endpoint }`,
 			data: data,
-			headers: {
-				Authorization: 'Bearer ' + this.accessToken
-			}
+			headers: hs
 		})
 	}
 

@@ -26,7 +26,7 @@ class Home extends Component {
 		}
 	}
 
-	componentWillMount( ) {
+	componentDidMount( ) {
 
 		location.getCurrent( ).then(( coords ) => {
 			let newState = Object.assign({}, this.state, {
@@ -39,7 +39,7 @@ class Home extends Component {
 
 		this.watchID = navigator.geolocation.watchPosition(( lastPosition ) => {
 			let coords = lastPosition.coords
-			fragments.getNearby( ).then(( fragments ) => {
+			fragments.getNearby( coords ).then(( fragments ) => {
 				let newState = Object.assign({}, this.state, {
 					currentPosition: {
 						latitude: coords.latitude,
@@ -51,7 +51,8 @@ class Home extends Component {
 				this.setState( newState )
 
 			})
-		}, ( err ) => console.warn( err ), { enableHighAccuracy: false })
+		}
+	)
 	}
 	componentWillUnmount( ) {
 		navigator.geolocation.clearWatch( this.watchID );

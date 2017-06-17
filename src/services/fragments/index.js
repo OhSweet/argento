@@ -1,8 +1,14 @@
 import { requestBase } from "../requestBase"
 
 class Fragments {
-	getNearby( ) {
-		return requestBase.makeCall( "GET", "/fragments" ).then((response) => response.data)
+	getNearby({longitude, latitude}) {
+		return requestBase.makeCall( "GET", "/fragments", null, null, {
+			'x-long': longitude,
+			'x-lat': latitude
+		}).then((response) => response.data)
+	}
+	getById (id){
+		return requestBase.makeCall("GET", "/fragments/" + id)
 	}
 	create(fragment) {
 		return requestBase.makeCall("POST", "/fragments", fragment)
