@@ -11,7 +11,7 @@ class CustomNavigationLayout extends Component {
 
 	constructor( props ) {
 		super( props )
-		console.log("props in custom nav layout", this.props)
+		//console.log("props in custom nav layout", this.props)
 		this.state = {
 			openedDrawer: false
 		}

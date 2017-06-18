@@ -39,7 +39,7 @@ class Login extends Component {
 	}
 
 	redirectToHome() {
-		console.log("props in redirect is", this.props)
+		//console.log("props in redirect is", this.props)
 
 		this.props.navigator.replace(this.props.routes.home)
 	}

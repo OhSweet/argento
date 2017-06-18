@@ -20,16 +20,15 @@ var ds = new ListView.DataSource({
 class FragmentList extends Component {
 	constructor( props ) {
 		super( props )
-		console.warn("fragments props are", this.props.fragments)
+		//console.warn("fragments props are CRIS", this.props.fragments)
 		this.state = {
 			dataSource: ds.cloneWithRows( this.props.fragments )
 		}
 	}
 	onPressItem( fragmentId ) {
+		routes.viewFragment.fragmentId = fragmentId
 		this.props.navigator.replace({
-			...routes.viewFragment,
-			key: Math.random( ),
-			fragmentId: fragmentId
+			...routes.viewFragment
 		});
 	}
 	render( ) {
@@ -58,9 +57,8 @@ class FragmentList extends Component {
 								</View>
 							</View>
 						</View>
-
 						<Card
-							onPress={this.onPressItem.bind( this, rowData.id )}>
+							onPress={this.onPressItem.bind( this, rowData._id )}>
 							<View style={styles.container}>
 								<View style={styles.rightView}>
 									<Text style={styles.titleStyle}>

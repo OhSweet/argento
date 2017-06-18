@@ -9,10 +9,17 @@ class Fragments {
 	}
 	getById (id){
 		return requestBase.makeCall("GET", "/fragments/" + id)
+		.then((response) => response.data)
+
 	}
 	create(fragment) {
 		return requestBase.makeCall("POST", "/fragments", fragment)
 	}
+
+	getOwn (){
+		return requestBase.makeCall("GET", "/fragments?own=true")
+	}
+
 }
 
 export let fragments = new Fragments( )
