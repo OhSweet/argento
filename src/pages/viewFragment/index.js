@@ -32,7 +32,8 @@ getFragmentContent(){
 			icon: fragment.display.icon,
 			type: fragment.content.type,
 			contentBody: fragment.content.body,
-			password: fragment.display.password
+			password: fragment.display.password,
+			busy: false
 		}
 	)
 		this.setState( newState )
@@ -56,7 +57,7 @@ getFragmentContent(){
 				<View style={{ flex: 1 }}>
 					<MapView
 
-											initialRegion={{
+											region={{
 												latitude: this.state.longitude,
 												longitude: this.state.longitude,
 												latitudeDelta: 0.001100,
