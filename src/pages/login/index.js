@@ -38,6 +38,12 @@ class Login extends Component {
 		})
 	}
 
+	hasLocalStorageIdentity() {
+		return identity.getToken().then((token) => {
+			return !!token
+		})
+	}
+
 	redirectToHome() {
 		//console.log("props in redirect is", this.props)
 
@@ -45,14 +51,23 @@ class Login extends Component {
 	}
 
 	onLogin( data ) {
+		var self = this
 		// console.log( "data is", data );
-		identity.setToken( data.credentials.token );
-		identity.setUserinfo( data.profile )
-		this.checkIdentity.call( this )
+		identity.setToken( data.credentials.token ).then(() => {
+			return identity.setUserinfo( data.profile )
+		}).then(() => {
+			self.checkIdentity.call( self )
+		})
 		// this.redirectToHome.call( this ) this.setState({ user: data, loggedIn: true, profilePic: data.profile.picture.data.url });
 	}
 	onLoginFound( data ) {
-		this.redirectToHome.call(this)
+		let self = this
+
+		this.hasLocalStorageIdentity.call(this).then((has) => {
+			if (has) { this.redirectToHome.call(self) }
+			else { self.fbLogin.logout() }
+		})
+
 	}
 
 	onLogout( ) {}
