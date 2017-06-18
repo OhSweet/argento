@@ -10,7 +10,12 @@ class Fragments {
 	getById (id){
 		return requestBase.makeCall("GET", "/fragments/" + id)
 		.then((response) => response.data)
+	}
 
+	getByIdWithPass (id, pass) {
+		return requestBase.makeCall("GET", "/fragments/" + id, null, null, {
+			'x-content-password': pass
+		}).then((response) => response.data)
 	}
 	create(fragment) {
 		return requestBase.makeCall("POST", "/fragments", fragment)

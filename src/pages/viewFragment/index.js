@@ -5,6 +5,7 @@ import MapView from "react-native-maps";
 import MyLocationMarker from "../../components/MyLocationMarker";
 import FragmentLocationDrawer from "../../components/FragmentLocationDrawer";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Prompt from 'react-native-prompt'
 
 class ViewFragment extends Component {
 	constructor( props ) {
@@ -13,27 +14,35 @@ class ViewFragment extends Component {
 			fragmentId: this.props.route.fragmentId,
 			busy: true
 		}
+		console.log( "this props", this.props )
 		this.getFragmentContent.call( this )
 	}
 
 	getFragmentContent( ) {
-		fragments.getById( this.state.fragmentId ).then(( fragment ) => {
+		fragments.getByIdWithPass( this.state.fragmentId, this.props.route.contentPass ).then(( fragment ) => {
+			console.log( "got fragment", fragment )
 			let newState = Object.assign({}, this.state, {
-				fragment   : fragment,
-				latitude   : parseFloat(fragment.location.latitude),
-				longitude  : parseFloat(fragment.location.longitude),
-				title      : fragment.display.title,
+				fragment: fragment,
+				latitude: parseFloat( fragment.location.latitude ),
+				longitude: parseFloat( fragment.location.longitude ),
+				title: fragment.display.title,
 				description: fragment.display.description,
-				category   : fragment.display.group,
-				protected  : fragment.display.protected,
-				icon       : fragment.display.icon,
-				type       : fragment.content.type,
+				category: fragment.display.group,
+				protected: fragment.display.protected,
+				icon: fragment.display.icon,
+				type: fragment.content.type,
 				contentBody: fragment.content.body,
-				password   : fragment.display.password,
-				busy       : false
+				password: fragment.display.password,
+				busy: false
 			})
+
+			if ( !!fragment.display.protected && !fragment.content.body ) {
+				newState.shouldDisplayPrompt = true
+				newState.busy = true
+			}
 			this.setState( newState )
-			console.log("new state is", newState)
+		}).catch(( ) => {
+			this.setState({ shouldDisplayPrompt: true })
 		})
 
 	}
@@ -43,6 +52,19 @@ class ViewFragment extends Component {
 			<View style={{
 				flex: 1
 			}}>
+				<Prompt
+					title="Enter password"
+					placeholder="Start typing"
+					visible={this.state.shouldDisplayPrompt}
+					onCancel={( ) => {
+					this.props.navigator.replace( this.props.routes.home )
+				}}
+					onSubmit={( value ) => {
+					this.props.route.contentPass = value;
+					this.props.navigator.replace({
+						...this.props.route
+					})
+				}}/>
 
 				<View style={this.state.busy
 					? [ styles.fullPage, styles.noDisplay ]
@@ -50,24 +72,25 @@ class ViewFragment extends Component {
 					<View style={{
 						flex: 1
 					}}>
-						{ this.state.busy ? null : (
-							<MapView.Animated
-								zoomEnabled={false}
-								scrollEnabled={false}
-								loadingEnabled={true}
-								rotateEnabled={false}
-
-								region={{
+						{this.state.busy
+							? null
+							: (
+								<MapView.Animated
+									zoomEnabled={false}
+									scrollEnabled={false}
+									loadingEnabled={true}
+									rotateEnabled={false}
+									region={{
 									latitude: this.state.latitude,
 									longitude: this.state.longitude,
 									latitudeDelta: 0.005100,
 									longitudeDelta: 0.001000
 								}}
-								style={styles.map}
-							>
-								{FragmentLocationDrawer( [this.state.fragment] )}
-							</MapView.Animated>
-						) }
+									style={styles.map}>
+									{FragmentLocationDrawer([ this.state.fragment ])}
+								</MapView.Animated>
+							)
+}
 
 					</View>
 					<View style={{
@@ -94,7 +117,6 @@ class ViewFragment extends Component {
 			</View>
 
 		)
-
 	}
 }
 
