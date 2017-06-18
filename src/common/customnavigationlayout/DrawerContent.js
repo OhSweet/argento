@@ -26,7 +26,7 @@ class DrawerContent extends Component {
 			userInfo: 'A',
 			userPhoto: 'https://facebook.github.io/react/img/logo_og.png'
 		}
-		console.log('nav items', this.state.navigationalItems)
+		//console.log('nav items', this.state.navigationalItems)
 		this.getUserInfo.call( this )
 	}
 
@@ -94,14 +94,14 @@ class DrawerContent extends Component {
 			icon: "exit-to-app"
 		}
 
-		console.log("route is here", this.props.route, this.props.navigator)
+		//console.log("route is here", this.props.route, this.props.navigator)
 		return [
 			{
 				icon: logout.icon,
 				value: logout.name,
 				onPress: ( ) => {
-					// this.removeUserData( );
-					this.props.navigator.replace(route);
+					this.removeUserData( );
+					this.props.navigator.replace(this.props.routes.login);
 					//this.redirectToLogin.call(this)
 				}
 			}

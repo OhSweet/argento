@@ -21,8 +21,8 @@ class Scan extends Component {
 			parsedUrl: null,
 			opacity: 0
 		};
-		console.warn("dimesions are", JSON.stringify(Dimensions.get('window')))
-		console.warn("Pixel ratio is", PixelRatio.get("window"))
+		//console.warn("dimesions are", JSON.stringify(Dimensions.get('window')))
+		//console.warn("Pixel ratio is", PixelRatio.get("window"))
 	}
 
 	render( ) {

@@ -47,7 +47,7 @@ class ItemCreator {
 				fragment.content.body = contentInfo.content
 				fragment.content.password = discoveryInfo.password
 				// content password here in the future ... !!!
-				console.warn('final fragment is', fragment)
+				//console.warn('final fragment is', fragment)
 				return fragments.create( fragment )
 
 				// return { fragment, content }
