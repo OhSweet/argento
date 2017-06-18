@@ -1,5 +1,5 @@
 import React, { Component  } from 'react';
-import { Text, View, TouchableHighlight, ScrollView } from 'react-native'
+import { Text, View, TouchableHighlight, ScrollView , AsyncStorage} from 'react-native'
 import MapView from "react-native-maps"
 import { Button } from "react-native-material-ui"
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -10,6 +10,8 @@ import FragmentLocationDrawer from "../../components/FragmentLocationDrawer"
 
 import location from "../../services/location"
 import { fragments } from "../../services/fragments"
+
+import BeaconAlert from "../../components/BeaconAlert"
 
 import styles from "./styles.js"
 
@@ -48,6 +50,8 @@ class Home extends Component {
 					fragments: fragments
 				})
 
+				{ BeaconAlert(fragments) }
+
 				this.setState( newState )
 
 			})
@@ -56,6 +60,7 @@ class Home extends Component {
 	}
 	componentWillUnmount( ) {
 		navigator.geolocation.clearWatch( this.watchID );
+		AsyncStorage.removeItem('visitedBeacons')
 	}
 
 	render( ) {
