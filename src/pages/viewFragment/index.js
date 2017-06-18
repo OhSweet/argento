@@ -11,39 +11,32 @@ class ViewFragment extends Component {
 		super( props )
 		this.state = {
 			fragmentId: this.props.route.fragmentId,
-			latitude: 37.78825,
-			longitude: -122.4324,
 			busy: true
 		}
-		this.getFragmentContent.call(this)
+		this.getFragmentContent.call( this )
 	}
 
+	getFragmentContent( ) {
+		fragments.getById( this.state.fragmentId ).then(( fragment ) => {
+			let newState = Object.assign({}, this.state, {
+				fragment   : fragment,
+				latitude   : parseFloat(fragment.location.latitude),
+				longitude  : parseFloat(fragment.location.longitude),
+				title      : fragment.display.title,
+				description: fragment.display.description,
+				category   : fragment.display.group,
+				protected  : fragment.display.protected,
+				icon       : fragment.display.icon,
+				type       : fragment.content.type,
+				contentBody: fragment.content.body,
+				password   : fragment.display.password,
+				busy       : false
+			})
+			this.setState( newState )
+			console.log("new state is", newState)
+		})
 
-getFragmentContent(){
-	fragments.getById(this.state.fragmentId).then(( fragment ) => {
-		let newState = Object.assign({}, this.state, {
-			fragment: fragment,
-			latitude: fragment.location.latitude,
-			longitude: fragment.location.longitude,
-			title: fragment.display.title,
-			description: fragment.display.description,
-			category: fragment.display.group,
-			protected: fragment.display.protected,
-			icon: fragment.display.icon,
-			type: fragment.content.type,
-			contentBody: fragment.content.body,
-			password: fragment.display.password,
-			busy: false
-		}
-	)
-		this.setState( newState )
-
-	})
-
-}
-
-
-
+	}
 
 	render( ) {
 		return (
@@ -51,41 +44,56 @@ getFragmentContent(){
 				flex: 1
 			}}>
 
-			<View style={this.state.busy
-				? [ styles.fullPage, styles.noDisplay ]
-				: styles.fullPage}>
-				<View style={{ flex: 1 }}>
-					<MapView
+				<View style={this.state.busy
+					? [ styles.fullPage, styles.noDisplay ]
+					: styles.fullPage}>
+					<View style={{
+						flex: 1
+					}}>
+						{ this.state.busy ? null : (
+							<MapView.Animated
+								zoomEnabled={false}
+								scrollEnabled={false}
+								loadingEnabled={true}
+								rotateEnabled={false}
 
-											region={{
-												latitude: this.state.longitude,
-												longitude: this.state.longitude,
-												latitudeDelta: 0.001100,
-												longitudeDelta: 0.000500
-    										}}
-											style={styles.map}/>
+								region={{
+									latitude: this.state.latitude,
+									longitude: this.state.longitude,
+									latitudeDelta: 0.005100,
+									longitudeDelta: 0.001000
+								}}
+								style={styles.map}
+							>
+								{FragmentLocationDrawer( [this.state.fragment] )}
+							</MapView.Animated>
+						) }
+
+					</View>
+					<View style={{
+						flex: 1
+					}}>
+						<WebView source={{
+							html: "<p>alalalal</p>"
+						}}/>
+
+					</View>
 				</View>
-			<View  style={{ flex: 1}}>
-			<WebView source={{
-			html: "<p>alalalal</p>"
-		}}/>
-			</View>
-			</View>
-			<View
-				style={this.state.busy
-				? [
-					styles.fullPage, {
-						justifyContent: 'center',
-						alignItems: 'center'
-					}
-				]
-				: [ styles.fullPage, styles.noDisplay ]}>
-				<Text>Loading</Text>
-			</View>
+				<View
+					style={this.state.busy
+					? [
+						styles.fullPage, {
+							justifyContent: 'center',
+							alignItems: 'center'
+						}
+					]
+					: [ styles.fullPage, styles.noDisplay ]}>
+					<Text>Loading</Text>
+				</View>
 
 			</View>
 
-	)
+		)
 
 	}
 }

@@ -50,7 +50,7 @@ class Home extends Component {
 					fragments: fragments
 				})
 
-				{ BeaconAlert(fragments) }
+				{ BeaconAlert(fragments, this.props.navigator) }
 
 				this.setState( newState )
 

@@ -1,8 +1,10 @@
 // STATELESS DUMB COMPONENT
 import React from "react"
 import { Alert, AsyncStorage } from "react-native"
+import routes from "../../routes.js"
 
-const BeaconAlert = ( fragments ) => {
+
+const BeaconAlert = ( fragments, navigator ) => {
 
 	let visitedBeacons = null
 
@@ -33,7 +35,12 @@ const BeaconAlert = ( fragments ) => {
 						style: 'cancel'
 					}, {
 						text: 'See more',
-						onPress: ( ) => console.log( 'Visist pressed' )
+						onPress: ( ) => {
+							routes.viewFragment.fragmentId = beacon._id
+							navigator.replace({
+								...routes.viewFragment
+							});
+						}
 					}
 				], { cancelable: true })
 
@@ -46,6 +53,7 @@ const BeaconAlert = ( fragments ) => {
 			AsyncStorage.getItem('visitedBeacons').then((item) => console.log("got stored item", item))
 		})
 	}
+
 
 }
 
