@@ -23,8 +23,12 @@ class Fragments {
 
 	getOwn (){
 		return requestBase.makeCall("GET", "/fragments?own=true")
+		.then((response) => response.data)
 	}
 
+	remove(id) {
+		return requestBase.makeCall("DELETE", "/fragments/" + id)
+	}
 }
 
 export let fragments = new Fragments( )

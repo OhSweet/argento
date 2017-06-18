@@ -4,6 +4,7 @@ import Help from "./pages/help"
 import Login from "./pages/login"
 import Create from "./pages/create"
 import ViewFragment from "./pages/viewFragment"
+import MyFragments from "./pages/myFragments"
 
 const routes = {
 	home: {
@@ -48,6 +49,15 @@ const routes = {
 		title: "View Fragment",
 		Page: ViewFragment,
 		hideNavbar: false
+	},
+	myFragments: {
+		title: "My fragments",
+		Page: MyFragments,
+		hideNavbar: false,
+		drawerInfo: {
+			name: "My fragments",
+			icon: "list"
+		}
 	}
 
 }
