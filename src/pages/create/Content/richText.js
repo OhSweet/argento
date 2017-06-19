@@ -20,6 +20,7 @@ class RichTextContent extends Component {
 
 	completeData( ) {
 		this.setState({ submitted: true })
+console.warn('the props for richtext',this.props)
 
 		this
 			.richtext

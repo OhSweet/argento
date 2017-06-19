@@ -11,7 +11,6 @@ class CustomNavigationLayout extends Component {
 
 	constructor( props ) {
 		super( props )
-		//console.log("props in custom nav layout", this.props)
 		this.state = {
 			openedDrawer: false
 		}
@@ -21,6 +20,8 @@ class CustomNavigationLayout extends Component {
 		this.setState({
 			openedDrawer: !this.state.openedDrawer
 		})
+		console.log( !this.state.openedDrawer, ' click')
+		console.log("props in custom nav layout", this.props)
 	}
 
 	render( ) {

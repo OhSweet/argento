@@ -45,14 +45,14 @@ export default function ( ) {
 
 			{/* PERMANENT PART OF THE VIEWS */}
 			<View>
-				<BottomNavigation>
+			{/*	<BottomNavigation>
 					<View style={styles.bottomTabs}>
 						<BottomNavigation.Action key="basic" active={this.state.activeTabIndex == 0} icon="all-out" label="Basic"/>
 						<BottomNavigation.Action key="detection" active={this.state.activeTabIndex == 1} icon="explore" label="Detect"/>
 						<BottomNavigation.Action key="content" active={this.state.activeTabIndex == 2} icon="receipt" label="Content"/>
 					</View>
 
-				</BottomNavigation>
+				</BottomNavigation> */}
 			</View>
 		</View>
 

@@ -23,14 +23,14 @@ const routes = {
 			icon: "settings-overscan"
 		}
 	},
-	help: {
+	/*help: {
 		title: "Help",
 		Page: Help,
 		drawerInfo: {
 			name: "Help and support",
 			icon: "help-outline"
 		}
-	},
+	},*/
 	login: {
 		title: "Login",
 		Page: Login,
